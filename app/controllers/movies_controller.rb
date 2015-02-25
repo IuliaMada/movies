@@ -1,11 +1,17 @@
 class MoviesController < ApplicationController
-  def index
-  	
-  	# @respons = HTTParty.get("http://myapifilms.com/imdb?title=#{params[:movie_title].gsub(' ', '%20')}&limit=10&year=#{params[:year]}&filter=#{params[:category]}")
-  	response = HTTParty.get("http://myapifilms.com/imdb?title=#{params[:movie_title].gsub(' ', '%20')}&limit=10")
-  	# @result = HTTParty::Parser.call(response.body, :json)
-      @movies_result = JSON.parse(response)
-   
+	include MoviesHelper
 
-  end
+  def index
+  	if params[:movie_title]
+  		
+      response = HTTParty.get("http://myapifilms.com/imdb?title=#{params[:movie_title].gsub(' ', '%20')}&limit=10")
+  		@movies_result = JSON.parse(response)
+      add_movie_to_db(@movies_result)
+
+       
+      @movies = Movie.search_db(params[:movie_title])
+      @genre = Movie.all
+    end
+  end 
+
 end
