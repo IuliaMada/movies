@@ -2,26 +2,41 @@ module MoviesHelper
 
 	def add_movie_to_db(rezult)
 		rezult.each do |r|
-			Movie.create(title: r['title']+" "+ r['year'],
+			movie = Movie.create(title: r['title']+" "+ r['year'],
 									poster: r['urlPoster'],
 									duration: r['runtime'][0],
-									genres: r['genres'].join(', '),
 									imdb_rating: r['rating'],
-									year: r['year'])
-									
+									year: r['year'] )
+			genres = r['genres']	
+				genres.each do |gen|
+					movie.genres << Genre.where(category: gen)
+				end
 		end
 	end
 
-	def all_genres
-		genre_array = []
-		movies = Movie.all 
-			movies.each do |m|
-				genre_array << m.genres
-			end	
-			genre_array.uniq
-
-			#inca nu e gata nu stiu cum sa o fac
+	def add_genres_to_db(rez)
+		rez.each do |r|
+			genre = r['genres']
+				genre.each do |g|
+					Genre.create(category: g)
+				end
+		end
 	end
+
+	def all_category
+		genres = Genre.all
+		categories = [] 
+			genres.each do |gen|
+				categories << [gen.category]
+			end
+			categories
+		end
+
+	def search_category(gen)
+		ob_gen = Genre.find_by(category: gen)
+		 all_movies = ob_gen.movies
+	 end
 end
 
-
+	
+	

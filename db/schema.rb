@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224140448) do
+ActiveRecord::Schema.define(version: 20150303122851) do
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres_movies", id: false, force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.integer "movie_id", null: false
+  end
+
+  add_index "genres_movies", ["genre_id", "movie_id"], name: "index_genres_movies_on_genre_id_and_movie_id"
+  add_index "genres_movies", ["movie_id", "genre_id"], name: "index_genres_movies_on_movie_id_and_genre_id"
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -21,7 +35,35 @@ ActiveRecord::Schema.define(version: 20150224140448) do
     t.integer  "imdb_rating"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "genres"
   end
+
+  create_table "user_lists", force: :cascade do |t|
+    t.boolean  "status"
+    t.integer  "movie_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_lists", ["movie_id"], name: "index_user_lists_on_movie_id"
+  add_index "user_lists", ["user_id"], name: "index_user_lists_on_user_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

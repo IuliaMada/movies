@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing User Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Movie</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_lists.each do |user_list| %>
+      <tr>
+        <td><%= user_list.status %></td>
+        <td><%= user_list.movie %></td>
+        <td><%= user_list.user %></td>
+        <td><%= link_to 'Show', user_list %></td>
+        <td><%= link_to 'Edit', edit_user_list_path(user_list) %></td>
+        <td><%= link_to 'Destroy', user_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User list', new_user_list_path %>
+<br>
+<h1>Vazute </h1>
+<% @vazute.each do |movie| %>
+<%= movie.title %>
+<br>
+<% end %>
+<br>
+<h1>De vazut</h1>
+<% @de_vazut.each do |movie| %>
+<%= movie.title %>
+<br>
+<% end %>

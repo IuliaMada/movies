@@ -4,14 +4,30 @@
 			<%=image_tag(movie.poster)%>
 		</td>
 		<td>
-			<%=movie.title%>
+			<%= movie.title%>
+			<br><br>
+			<% movie.genres.each do |gen|%>
+			<%= gen.category %><br>
+			<% end %>
 			<br>
-			<%=movie.genres%>
+			<%= movie.duration%>
 			<br>
-			<%=movie.duration%>
-			<br>
-			<%=movie.year%>
+			<%= movie.year%>
 		</td>
+			<td>
+				<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
+				<%= hidden_field_tag :movie_id, movie.id %>
+				<%= hidden_field_tag :status, true  %>
+				<%= hidden_field_tag :user_id, 1  %>
+				<%= submit_tag "Musai de vazut" %>
+				<% end %>
+
+				<%= form_tag user_lists_path, :action => "create", :method => "post" do %>
+				<%= hidden_field_tag :movie_id, movie.id  %>
+				<%= hidden_field_tag :status , false  %>
+				<%= hidden_field_tag :user_id, 1  %>
+				<%= submit_tag "Vazut"  %>
+				<% end %>
+			</td>
 		</tr>
 </table>
-
