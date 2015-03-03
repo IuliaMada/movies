@@ -1,7 +1,7 @@
 
 <%= form_tag({controller: 'movies', action: "index"},method: 'get') do %>
 	<%= label_tag("Search for:") %>
-	<%= text_field_tag :movie_title, params[:movie_title], placeholder: "movie title" %>
+	<%= text_field_tag :movie_title, params[:movie_title], placeholder: " title or year" %>
 	<%= select_tag :genre, options_for_select(all_category), prompt: "Gen" %>
   <%= submit_tag("Search") %>
 <% end %>

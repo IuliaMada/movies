@@ -15,18 +15,21 @@
 			<%= movie.year%>
 		</td>
 			<td>
+				<% if user_signed_in? %>
+					
 				<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
 				<%= hidden_field_tag :movie_id, movie.id %>
 				<%= hidden_field_tag :status, true  %>
-				<%= hidden_field_tag :user_id, 1  %>
+				<%= hidden_field_tag :user_id, current_user  %>
 				<%= submit_tag "Musai de vazut" %>
 				<% end %>
 
 				<%= form_tag user_lists_path, :action => "create", :method => "post" do %>
 				<%= hidden_field_tag :movie_id, movie.id  %>
 				<%= hidden_field_tag :status , false  %>
-				<%= hidden_field_tag :user_id, 1  %>
+				<%= hidden_field_tag :user_id, current_user  %>
 				<%= submit_tag "Vazut"  %>
+				<% end %>
 				<% end %>
 			</td>
 		</tr>
