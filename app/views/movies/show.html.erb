@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title%>
+</p>
+<p>
+  <%=image_tag @movie.poster%>
+</p>
+<p>
+  <strong>Genre:</strong>
+  <% @movie.genres.each do |g|%>
+  <%= g.category %>
+  <% end %>
+</p>
+<p>
+  <strong>Countries:</strong>
+  <%= %>
+</p>
+<p>
+  <strong>Rating:</strong>
+  <%= @movie.title%>
+</p>
+<p>
+  <strong>Plot:</strong>
+  Bla bla bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+</p>
+<p>
+  <strong>Runtime:</strong>
+  <%= @movie.duration%>
+</p>
+<p>
+  <strong>Comments:</strong>
+  <%= @movie.duration%>
+</p>
+<p>
+  <strong>I like this movie:</strong>
+  	Ion,Marie,Andreis
+</p>
+
+
+<%= link_to 'Back', movies_path %>

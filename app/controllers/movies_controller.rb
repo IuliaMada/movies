@@ -17,4 +17,8 @@ class MoviesController < ApplicationController
       @movies = Movie.search_db(params[:movie_title])
     end
   end 
+
+  def show
+    @movie = Movie.find(params[:id])
+  end
 end

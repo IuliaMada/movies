@@ -11,5 +11,3 @@
 <br>
 
 
- <%= UserList.where(user_id: current_user.id, status: true).map {|i| i.movie_id} %>
- <%= UserList.where(user_id: current_user.id, status: false).map {|i| i.movie_id} %>
