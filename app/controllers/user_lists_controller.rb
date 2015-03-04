@@ -33,7 +33,7 @@ class UserListsController < ApplicationController
 
     respond_to do |format|
       if @user_list.save
-        format.html { redirect_to @user_list, notice: 'User list was successfully created.' }
+        format.html { redirect_to movies_path, notice: 'User list was successfully created.' }
         format.json { render :show, status: :created, location: @user_list }
       else
         format.html { render :new }

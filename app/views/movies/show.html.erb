@@ -1,42 +1,62 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title%>
-</p>
-<p>
-  <%=image_tag @movie.poster%>
-</p>
-<p>
-  <strong>Genre:</strong>
-  <% @movie.genres.each do |g|%>
-  <%= g.category %>
-  <% end %>
-</p>
-<p>
-  <strong>Countries:</strong>
-  <%= %>
-</p>
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.title%>
-</p>
-<p>
-  <strong>Plot:</strong>
-  Bla bla bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-</p>
-<p>
-  <strong>Runtime:</strong>
-  <%= @movie.duration%>
-</p>
-<p>
-  <strong>Comments:</strong>
-  <%= @movie.duration%>
-</p>
-<p>
-  <strong>I like this movie:</strong>
-  	Ion,Marie,Andreis
-</p>
-
-
-<%= link_to 'Back', movies_path %>
+<table>
+  <tr>
+    <td>
+      <p>
+        <strong>Title:</strong>
+        <%= @movie.title%>
+      </p>
+      <p>
+        <%=image_tag @movie.poster%>
+      </p>
+      <p>
+        <strong>Genre:</strong>
+        <% @movie.genres.each do |g|%>
+        <%= g.category %>
+        <% end %>
+      </p>
+      <p>
+        <strong>Countries:</strong>
+        <%= %>
+      </p>
+      <p>
+        <strong>Rating:</strong>
+        <%= @movie.title%>
+      </p>
+      <p>
+        <strong>Plot:</strong>
+        Bla bla bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      </p>
+      <p>
+        <strong>Runtime:</strong>
+        <%= @movie.duration%>
+      </p>
+      <p>
+        <strong>Comments:</strong>
+        <%= @movie.duration%>
+      </p>
+      <p>
+        <strong>I like this movie:</strong>
+        	Ion,Marie,Andreis
+      </p>
+    </td>
+    <td>
+        <% unless wish_movies(current_user.id).include?(@movie.id) %>
+          <%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
+          <%= hidden_field_tag :movie_id, @movie.id %>
+          <%= hidden_field_tag :status, true  %>
+          <%= hidden_field_tag :user_id, current_user.id  %>
+          <%= submit_tag "Musai de vazut" %>
+          <% end %>
+        <% end%>
+        <% unless watched_movies(current_user.id).include?(@movie.id) %>
+          <%= form_tag user_lists_path, :action => "create", :method => "post" do %>
+          <%= hidden_field_tag :movie_id, @movie.id  %>
+          <%= hidden_field_tag :status , false  %>
+          <%= hidden_field_tag :user_id, current_user.id  %>
+          <%= submit_tag "Vazut"  %>
+          <% end %>
+        <% end %>
+    </td>
+  </tr>
+</table>
