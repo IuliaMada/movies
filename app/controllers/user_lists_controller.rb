@@ -40,6 +40,7 @@ class UserListsController < ApplicationController
         format.json { render json: @user_list.errors, status: :unprocessable_entity }
       end
     end
+    # redirect_to(:controller => 'movies', :action => 'index')
   end
 
   # PATCH/PUT /user_lists/1
