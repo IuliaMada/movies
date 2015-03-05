@@ -14,7 +14,12 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'httparty', '~> 0.13.3'
+
 gem 'devise', '~> 3.4.1' 
+
+gem 'carrierwave', '~> 0.10.0'
+
+gem 'rmagick', '~> 2.13.4'
 
 gem 'gravatar_image_tag', '~> 1.2.0'
 # Use jquery as the JavaScript library
