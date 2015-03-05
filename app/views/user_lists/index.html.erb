@@ -31,13 +31,29 @@
 <%= link_to 'New User list', new_user_list_path %>
 <br>
 <h1>Vazute </h1>
+
 <% @vazute.each do |movie| %>
-<%= movie.title %>
-<br>
+  <%= movie.title %><br>
+  <%= button_to "delete", {:controller => :movies,
+      :action => 'destroy', :id => movie.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
+  <%= form_tag change_status_path, :method => "put"  do %>
+          <%= hidden_field_tag :movie_id, movie.id %>
+          <%= hidden_field_tag :user_id, current_user.id  %>
+          <%= submit_tag "Muta in filme de vazut" %>
+  <% end %>
 <% end %>
+
 <br>
+
 <h1>De vazut</h1>
 <% @de_vazut.each do |movie| %>
-<%= movie.title %>
-<br>
+  <%= movie.title %><br>
+  <%= button_to "delete", {:controller => :movies,
+      :action => 'destroy', :id => movie.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
+  <br>
+  <%= form_tag change_status_path, :method => "put"  do %>
+          <%= hidden_field_tag :movie_id, movie.id %>
+          <%= hidden_field_tag :user_id, current_user.id  %>
+          <%= submit_tag "Muta in filme vazute" %>
+  <% end %>
 <% end %>

@@ -16,21 +16,24 @@
 		</td>
 			<td>
 			<% if user_signed_in? %>
-			<% unless wish_movies(current_user.id).include?(movie.id) %>
+
+
+				<% if lists_user(current_user.id).include?(movie.id) %>
+					<p> Deja se afla intr-o lista</p>
+				<% else %>
 					<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
 					<%= hidden_field_tag :movie_id, movie.id %>
 					<%= hidden_field_tag :status, true  %>
 					<%= hidden_field_tag :user_id, current_user.id  %>
 					<%= submit_tag "Musai de vazut" %>
 					<% end %>
-				<% end%>
-				<% unless watched_movies(current_user.id).include?(movie.id) %>
+
 					<%= form_tag user_lists_path, :action => "create", :method => "post" do %>
 					<%= hidden_field_tag :movie_id, movie.id  %>
 					<%= hidden_field_tag :status , false  %>
 					<%= hidden_field_tag :user_id, current_user.id  %>
 					<%= submit_tag "Vazut"  %>
-					<% end %>
+					<% end %>		
 				<% end %>
 			<% end %>
 			</td>

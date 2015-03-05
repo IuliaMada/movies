@@ -1,6 +1,25 @@
 <h1>My Profile</h1>
 
-<%= current_user.first_name %>
-<%= current_user.last_name %>
 
+<table>
+	<tr>
+		<td>
+			<%= gravatar_image_tag(current_user.email, :alt => current_user.first_name, :gravatar => { :default => 'http://2.bp.blogspot.com/-S31d8bZUDfU/UY6UNUHyVeI/AAAAAAAAABQ/QMiC1Pd7UwY/s1600/iphone+054.png' }) %>
+		</td>
+		<td>
+			<%= current_user.first_name %>
+			<%= current_user.last_name %>
+		</td>
+		<td>
+			<br>
+			<%= link_to "Musai de vazut", '#' %><br>
+    	<%= link_to "Vazute", '#' %>
+		</td>
+	</tr>
+</table>
+<br>
 <%=link_to "Edit profile", edit_user_registration_path %>
+
+<%=link_to "Home", movies_path %>
+
+	

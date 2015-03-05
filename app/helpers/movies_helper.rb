@@ -36,17 +36,23 @@ module MoviesHelper
 		ob_gen = Genre.find_by(category: gen)
 		 all_movies = ob_gen.movies
 	 end
+	 def lists_user(user_id)
+		all_movies = UserList.where(user_id: user_id).map{|list| list.movie_id}
+		all_movies
+	end
 end
 
-def watched_movies(user_id)
-	watched = UserList.where(user_id: user_id, status: false)
-	w = watched.map{|list| list.movie_id}
-	w
-end
+# def watched_movies(user_id)
+# 	watched = UserList.where(user_id: user_id, status: false)
+# 	w = watched.map{|list| list.movie_id}
+# 	w
+# end
 
-def wish_movies(user_id)
-	wish = UserList.where(user_id: user_id, status: true).map{|list| list.movie_id}
-	wish
-end
+# def wish_movies(user_id)
+# 	wish = UserList.where(user_id: user_id, status: true).map{|list| list.movie_id}
+# 	wish
+# end
 	
 	
+
+

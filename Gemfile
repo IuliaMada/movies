@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'httparty', '~> 0.13.3'
 gem 'devise', '~> 3.4.1' 
 
-
+gem 'gravatar_image_tag', '~> 1.2.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

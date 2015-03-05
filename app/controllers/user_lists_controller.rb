@@ -4,11 +4,11 @@ class UserListsController < ApplicationController
   # GET /user_lists
   # GET /user_lists.json
   def index
-    @user_lists = UserList.all
+    @user_lists = UserList.where(user_id: current_user.id)
     
-    @vazute = UserList.where(status: false).map{|l| Movie.find(l.movie_id)}
+    @vazute = UserList.where(status: true, user_id: current_user.id).map{|l| Movie.find(l.movie_id)}
 
-    @de_vazut = UserList.where(status: true).map{|l| Movie.find(l.movie_id)}
+    @de_vazut = UserList.where(status: false,user_id: current_user.id).map{|l| Movie.find(l.movie_id)}
     
   end
 
@@ -45,26 +45,31 @@ class UserListsController < ApplicationController
 
   # PATCH/PUT /user_lists/1
   # PATCH/PUT /user_lists/1.json
-  def update
-    respond_to do |format|
-      if @user_list.update(user_list_params)
-        format.html { redirect_to @user_list, notice: 'User list was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_list }
+  def change_status
+    user_list = UserList.find_by(movie_id: params[:movie_id],user_id: params[:user_id])
+      if user_list.status == false
+        user_list.update(
+          status: true
+        )
       else
-        format.html { render :edit }
-        format.json { render json: @user_list.errors, status: :unprocessable_entity }
+       user_list.status = false
+       user_list.save
       end
-    end
+      redirect_to user_lists_path
+  end
+  def update
+    
   end
 
   # DELETE /user_lists/1
   # DELETE /user_lists/1.json
   def destroy
-    @user_list.destroy
-    respond_to do |format|
-      format.html { redirect_to user_lists_url, notice: 'User list was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @user_list = current_user.user_lists.where(movie_id: params[:movie_id])
+    # @user_list.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to user_lists_url, notice: 'User list was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
@@ -77,5 +82,7 @@ class UserListsController < ApplicationController
     def user_list_params
       params.permit(:status, :movie_id, :user_id)
     end
+
+    
 
 end

@@ -66,6 +66,7 @@ GEM
     execjs (2.3.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gravatar_image_tag (1.2.0)
     hike (1.2.3)
     httparty (0.13.3)
       json (~> 1.8)
@@ -170,6 +171,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 3.4.1)
+  gravatar_image_tag (~> 1.2.0)
   httparty (~> 0.13.3)
   jbuilder (~> 2.0)
   jquery-rails
