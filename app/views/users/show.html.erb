@@ -4,11 +4,15 @@
 <table>
 	<tr>
 		<td>
-			<%= gravatar_image_tag(current_user.email, :alt => current_user.first_name, :gravatar => { :default => 'http://2.bp.blogspot.com/-S31d8bZUDfU/UY6UNUHyVeI/AAAAAAAAABQ/QMiC1Pd7UwY/s1600/iphone+054.png' }) %>
+			<% if current_user.image %>
+				<%= image_tag current_user.image_url  %>				
+			<% end %>
 		</td>
+	</tr>
+	<tr>
 		<td>
-			<%= current_user.first_name %>
-			<%= current_user.last_name %>
+			<b><%= current_user.first_name %></b>
+			<b><%= current_user.last_name %></b>
 		</td>
 		<td>
 			<br>
@@ -21,7 +25,7 @@
 <%=link_to "Edit profile", edit_user_registration_path %>
 
 <%=link_to "Home", movies_path %>
-<div class="profile_picture">
-			<%= image_tag current_user.image.to_s %>
-		</div>
+
+			
+	
 	

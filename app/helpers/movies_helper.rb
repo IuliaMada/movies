@@ -29,14 +29,14 @@ module MoviesHelper
 			genres.each do |gen|
 				categories << [gen.category]
 			end
-			categories
+		categories
 		end
 
 	def search_category(gen)
 		ob_gen = Genre.find_by(category: gen)
-		 all_movies = ob_gen.movies
-	 end
-	 def lists_user(user_id)
+		all_movies = ob_gen.movies
+	end
+	def lists_user(user_id)
 		all_movies = UserList.where(user_id: user_id).map{|list| list.movie_id}
 		all_movies
 	end
