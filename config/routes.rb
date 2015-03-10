@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+
   devise_for :users
   resources :user_lists
   resources :movies
@@ -6,7 +8,7 @@ Rails.application.routes.draw do
   put 'change_status' => 'user_lists#change_status', as: :change_status
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  put 'create' => 'comments#create', as: :create
   # You can have the root of your site routed with "root"
    root 'movies#index'
 

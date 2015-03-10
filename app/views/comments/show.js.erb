@@ -1,0 +1,8 @@
+var comments = $('#comments');
+if (comments.is(':empty')) {
+	comments.html("<%= escape_javascript (render partial: 'comment', collection: @movie_comments) %>");
+	$('.button_to :input').val('Hide Comments');
+} else {
+	comments.empty();
+	$('.button_to :input').val('Show Comments (<%= @movie_comments.count %>)');
+}

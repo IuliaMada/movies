@@ -1,0 +1,9 @@
+<ul>
+  <li><%= image_tag comment.user.image %></li>
+  <li><%= comment.user.first_name %></li>
+  <li><%= comment.body %></li>
+  <li><%= comment.movie.title %></li>
+  <li><%= link_to 'Show', comment %></li>
+  <li><%= link_to 'Edit', edit_comment_path(comment) %></li>
+  <li><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+</ul>

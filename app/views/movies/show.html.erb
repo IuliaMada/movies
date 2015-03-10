@@ -9,6 +9,8 @@
       <p>
         <%=image_tag @movie.poster%>
       </p>
+    </td>
+    <td>
       <p>
         <strong>Genre:</strong>
         <% @movie.genres.each do |g|%>
@@ -41,9 +43,10 @@
       </p>
     </td>
     <td>
-        <% if lists_user(current_user.id).include?(@movie.id) %>
+      <% if lists_user(current_user.id).include?(@movie.id) %>
+        <br>
         <p> Deja se afla intr-o lista </p>
-        <% else %>
+      <% else %>
           <%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
           <%= hidden_field_tag :movie_id, @movie.id %>
           <%= hidden_field_tag :status, true  %>
@@ -57,7 +60,39 @@
           <%= hidden_field_tag :user_id, current_user.id  %>
           <%= submit_tag "Vazut"  %>
           <% end %>
-        <% end %>
+      <% end %>
     </td>
   </tr>
+  <tr>
+    <td>
+      <%= form_tag comments_path, :action => "create", :method => "post" do  %>
+        <div class="field">
+          <%= hidden_field_tag :user_id, current_user.id  %>
+        </div>
+        <div class="field">
+          <%= label_tag :body %><br>
+          <%= text_area_tag :body %>
+        </div>
+        <div class="field">
+          <%= hidden_field_tag :movie_id, @movie.id  %>
+        </div>
+        <div class="actions">
+          <%= submit_tag "Save comment" %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
+
 </table>
+<div id="comments"></div>
+
+
+
+<%= button_to "Show comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true %>
+
+
+
+
+<%= link_to "Home" ,movies_path %>
+<%= link_to "New comment",  new_comment_path %>
+
