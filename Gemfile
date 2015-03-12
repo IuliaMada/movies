@@ -21,8 +21,9 @@ gem 'carrierwave', '~> 0.10.0'
 
 gem 'rmagick', '~> 2.13.4'
 
-gem 'gravatar_image_tag', '~> 1.2.0'
 # Use jquery as the JavaScript library
+gem 'bootstrap-sass', '~> 3.3.3'
+
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

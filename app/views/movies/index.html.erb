@@ -1,13 +1,12 @@
 
-<%= render 'search' %>
+<div class="container well" >
+	<div class="jumbotron">
+	  <%= render 'search' %>
+	</div>
 
-<h2>Listing movies:</h2>
-
-<% if params[:movie_title] %>
-	<%= render @movies %>
-<% end %>
-
-<%= user_signed_in? %>
-<br>
-
+	<% if params[:movie_title] %>
+		<h3>Search result:</h3>
+		<%= render @movies %>
+	<% end %>
+</div>
 

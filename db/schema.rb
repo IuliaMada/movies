@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308141420) do
+ActiveRecord::Schema.define(version: 20150311124352) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(version: 20150308141420) do
     t.string   "poster"
     t.integer  "year"
     t.string   "duration"
-    t.integer  "imdb_rating"
+    t.string   "imdb_rating"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "plot"
+    t.string   "countries"
   end
 
   create_table "user_lists", force: :cascade do |t|

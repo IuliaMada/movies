@@ -1,41 +1,37 @@
-<table>
-	<tr>
-		<td>
-			<%= link_to image_tag(movie.poster), movie_path(movie.id)%>
-		</td>
-		<td>
-			<%= movie.title%>
-			<br><br>
-			<% movie.genres.each do |gen|%>
-			<%= gen.category %><br>
-			<% end %>
-			<br>
-			<%= movie.duration%>
-			<br>
-			<%= movie.year%>
-		</td>
-			<td>
-			<% if user_signed_in? %>
 
-
-				<% if lists_user(current_user.id).include?(movie.id) %>
-					<p> Deja se afla intr-o lista</p>
-				<% else %>
-					<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
-					<%= hidden_field_tag :movie_id, movie.id %>
+<div class="row">
+  <div class="col-md-3">
+  	<div class="img-thumbnail">
+    <%= link_to image_tag(movie.poster), movie_path(movie.id), :class=> "img-responsive" %>
+  	</div>
+  </div>
+  <div class="col-md-5">
+    <h3><%= movie.title%></h3>
+    <p> <% movie.genres.each do |gen|%>
+					<%= gen.category %> |
+				<% end %>
+		</p>
+		<p><%= movie.duration%></p>
+		<p>IMDB rating: <%= movie.imdb_rating%></p>
+	</div>
+	<div class="col-md-4">
+		<% if user_signed_in? %>
+			<% if lists_user(current_user.id).include?(movie.id) %>
+				<h4> Deja se afla intr-o lista</h4>
+			<% else %>
+				<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
+				  <%= hidden_field_tag :movie_id, movie.id %>
 					<%= hidden_field_tag :status, true  %>
 					<%= hidden_field_tag :user_id, current_user.id  %>
-					<%= submit_tag "Musai de vazut" %>
-					<% end %>
-
-					<%= form_tag user_lists_path, :action => "create", :method => "post" do %>
+					<%= submit_tag "Musai de vazut",class:"btn btn-primary" %>
+				<% end %>
+				<%= form_tag user_lists_path, :action => "create", :method => "post" do  %>
 					<%= hidden_field_tag :movie_id, movie.id  %>
 					<%= hidden_field_tag :status , false  %>
 					<%= hidden_field_tag :user_id, current_user.id  %>
-					<%= submit_tag "Vazut"  %>
-					<% end %>		
-				<% end %>
+					<%= submit_tag "Vazut",class:"btn btn-primary"  %>
+				<% end %>		
 			<% end %>
-			</td>
-		</tr>
-</table>
+		<% end %>
+	</div>  
+</div>

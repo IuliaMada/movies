@@ -6,7 +6,11 @@ module MoviesHelper
 									poster: r['urlPoster'],
 									duration: r['runtime'][0],
 									imdb_rating: r['rating'],
-									year: r['year'] )
+									year: r['year'],
+									plot: r['plot'],
+									countries: r['countries']
+									)
+
 			genres = r['genres']	
 				genres.each do |gen|
 					movie.genres << Genre.where(category: gen)

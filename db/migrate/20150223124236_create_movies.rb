@@ -5,7 +5,7 @@ class CreateMovies < ActiveRecord::Migration
       t.string :poster
       t.integer :year
       t.string :duration
-      t.integer :imdb_rating
+      t.string :imdb_rating
 
       t.timestamps null: false
     end

@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
-<table>
-  <tr>
-    <td>
+<div class="row">
+  <div class="col-md-3">
+    <p id="notice"><%= notice %></p>
       <p>
         <strong>Title:</strong>
         <%= @movie.title%>
@@ -9,8 +8,8 @@
       <p>
         <%=image_tag @movie.poster%>
       </p>
-    </td>
-    <td>
+  </div>
+  <div class="col-md-5">
       <p>
         <strong>Genre:</strong>
         <% @movie.genres.each do |g|%>
@@ -19,30 +18,22 @@
       </p>
       <p>
         <strong>Countries:</strong>
-        <%= %>
+        <%=@movie.countries %>
       </p>
       <p>
-        <strong>Rating:</strong>
-        <%= @movie.title%>
-      </p>
-      <p>
-        <strong>Plot:</strong>
-        Bla bla bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        <strong>IMDB rating:</strong>
+        <%= @movie.imdb_rating%>
       </p>
       <p>
         <strong>Runtime:</strong>
         <%= @movie.duration%>
       </p>
       <p>
-        <strong>Comments:</strong>
-        <%= @movie.duration%>
-      </p>
-      <p>
         <strong>I like this movie:</strong>
         	Ion,Marie,Andreis
       </p>
-    </td>
-    <td>
+   </div>
+   <div class="col-md-4">
       <% if lists_user(current_user.id).include?(@movie.id) %>
         <br>
         <p> Deja se afla intr-o lista </p>
@@ -61,38 +52,23 @@
           <%= submit_tag "Vazut"  %>
           <% end %>
       <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= form_tag comments_path, :action => "create", :method => "post" do  %>
-        <div class="field">
-          <%= hidden_field_tag :user_id, current_user.id  %>
-        </div>
-        <div class="field">
-          <%= label_tag :body %><br>
-          <%= text_area_tag :body %>
-        </div>
-        <div class="field">
-          <%= hidden_field_tag :movie_id, @movie.id  %>
-        </div>
-        <div class="actions">
-          <%= submit_tag "Save comment" %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
+  </div>
+</div>
+<div class="row">
+  <strong>Plot:</strong>
+    <%=@movie.plot %>
+</div>
 
-</table>
-<div id="comments"></div>
+<div class="row">
+  <div id="comments"></div>
+
+<%= button_to "Show comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true, class: "showbutton" %>
+
+<div id="add_comment"></div>
 
 
+<%= button_to "Add comment", {controller: "comments", action: "new",id: @movie }, method: "get", remote: true  %>
 
-<%= button_to "Show comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true %>
+</div>
 
-
-
-
-<%= link_to "Home" ,movies_path %>
-<%= link_to "New comment",  new_comment_path %>
 

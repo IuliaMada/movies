@@ -18,7 +18,10 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = Comment.new(movie_id: params[:id])
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   # GET /comments/1/edit
@@ -32,6 +35,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        format.js {}
         format.html { redirect_to @comment.movie, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
@@ -73,6 +77,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.permit(:user_id, :body, :movie_id)
+      params.require(:comment).permit(:user_id, :body, :movie_id)
     end
 end

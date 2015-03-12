@@ -1,31 +1,36 @@
-<h1>My Profile</h1>
-
+<h2>My Profile</h2>
 
 <table>
+	<tr>
+		<td>
+			<b><%= current_user.first_name %></b>
+			<b><%= current_user.last_name %></b>
+		</td>
+	</tr>
 	<tr>
 		<td>
 			<% if current_user.image %>
 				<%= image_tag current_user.image_url  %>				
 			<% end %>
 		</td>
-	</tr>
-	<tr>
 		<td>
-			<b><%= current_user.first_name %></b>
-			<b><%= current_user.last_name %></b>
-		</td>
+			<p>Listele magice:</p>
+		<td>
 		<td>
 			<br>
-			<%= link_to "Musai de vazut", '#' %><br>
-    	<%= link_to "Vazute", '#' %>
+    	<ul class="nav nav-tabs">
+  			<li class="active"><a href="/user_lists">Musai de vazut</a></li>
+  			<li><a href="/user_lists">Vazute</a></li>
+			</ul>
 		</td>
 	</tr>
+
 </table>
 <br>
 <%=link_to "Edit profile", edit_user_registration_path %>
 
 <%=link_to "Home", movies_path %>
 
-			
+
 	
 	

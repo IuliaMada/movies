@@ -1,3 +1,16 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.jumbotron{
+	background: url(/assets/bg.png);
+
+	input{
+		height: 30px;
+
+	}
+	#genre{
+		height: 30px;
+	}
+}
