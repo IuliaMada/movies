@@ -1,6 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing User Lists</h1>
+<h2>Users activity:</h2><br>
+ 
+<% @users_lists.order(updated_at: :desc).each do |list| %>
+  <ul>
+    <li>
+      <%= User.find_by(id: list.user_id).first_name %> 
+      a adaugat in lista 
+      <% if list.status == true %>
+        "Vazute"
+      <% else %>
+        "Musai de vazut"
+      <% end %>
+      filmul "<%= Movie.find(list.movie_id).title %>"<br>
+      at: <%= list.created_at %><hr>
+    </li>
+  </ul>
+<% end %>
+   
 
 <table>
   <thead>
@@ -28,34 +45,7 @@
 
 <br>
 
-<%= link_to 'New User list', new_user_list_path %>
-<br>
-<h1>Vazute </h1>
 
-<% @vazute.each do |movie| %>
-  <%= movie.title %><br>
-  <%= button_to "delete", {:controller => :movies,
-      :action => 'destroy', :id => movie.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
-  <%= form_tag change_status_path, :method => "put"  do %>
-          <%= hidden_field_tag :movie_id, movie.id %>
-          <%= hidden_field_tag :user_id, current_user.id  %>
-          <%= submit_tag "Muta in filme de vazut" %>
-  <% end %>
-<% end %>
 
-<br>
 
-<h1>De vazut</h1>
-<% @de_vazut.each do |movie| %>
-  <%= movie.title %><br>
-  <%= button_to "delete", {:controller => :movies,
-      :action => 'destroy', :id => movie.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
-  <br>
-  <%= form_tag change_status_path, :method => "put"  do %>
-          <%= hidden_field_tag :movie_id, movie.id %>
-          <%= hidden_field_tag :user_id, current_user.id  %>
-          <%= submit_tag "Muta in filme vazute" %>
-  <% end %>
-<% end %>
 
-<%=link_to "Home", movies_path %>

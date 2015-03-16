@@ -18,7 +18,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
-                <li><%= link_to "<span class='glyphicon glyphicon-user'></span> #{current_user.first_name}".html_safe, users_show_path %></li>
+                <li><%= link_to "All users", users_path %></li>
+                <li><%= link_to "<span class='glyphicon glyphicon-user'></span> #{current_user.first_name}".html_safe, user_path(current_user) %></li>
                 <li><%= link_to '<i class="glyphicon glyphicon-log-out"></i> Logout'.html_safe, destroy_user_session_path , :method => :delete %></li>
               <% else %>
                 <li><%= link_to '<i class="glyphicon glyphicon-log-in"></i> Login'.html_safe, new_user_session_path %></li>

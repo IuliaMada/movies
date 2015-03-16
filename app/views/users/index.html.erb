@@ -1,0 +1,8 @@
+
+<% User.all.each do |user| %>
+<%= link_to image_tag(user.image), user_path(user), :class=> "img-responsive" %>
+<!-- I need show method -->
+	<%= user.first_name %>
+	<%= user.last_name %><hr>
+<% end %>
+

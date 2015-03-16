@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :user_lists
   resources :movies
-  get 'users/show'
+  resources :users
+  
   put 'change_status' => 'user_lists#change_status', as: :change_status
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

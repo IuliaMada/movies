@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<td>
+		  <%= status_list.title %><br>
+		</td>
+			<% if current_user.id == @user.id %>
+		<td>
+		  <%= form_tag change_status_path, :controller =>:movies, :method => "put"  do %>
+		          <%= hidden_field_tag :movie_id, status_list.id %>
+		          <%= hidden_field_tag :user_id, @user.id  %>
+		          <%= submit_tag "Muta in cealalta lista" %>
+		  <% end %>
+		</td>
+		<td>
+		  <%= button_to "Delete", {:controller => :movies,
+		      :action => 'destroy', :id => status_list.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
+		</td>
+		<% end %>
+	</tr><hr>
+</table>

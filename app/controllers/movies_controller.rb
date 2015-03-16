@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
     @user_list = UserList.find_by(user_id: current_user, movie_id: params[:id])
     @user_list.destroy
     respond_to do |format|
-      format.html { redirect_to user_lists_url, notice: 'User list was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user), notice: 'User list was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

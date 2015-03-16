@@ -3,14 +3,14 @@
 <table>
 	<tr>
 		<td>
-			<b><%= current_user.first_name %></b>
-			<b><%= current_user.last_name %></b>
+			<b><%= @user.first_name %></b>
+			<b><%= @user.last_name %></b>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<% if current_user.image %>
-				<%= image_tag current_user.image_url  %>				
+			<% if @user.image %>
+				<%= image_tag @user.image_url  %>				
 			<% end %>
 		</td>
 		<td>
@@ -29,7 +29,15 @@
 <br>
 <%=link_to "Edit profile", edit_user_registration_path %>
 
-<%=link_to "Home", movies_path %>
+
+<br>
+<h1>Vazute </h1>
+
+<%= render partial: "user_lists/status_list", collection: @vazute %>
+<br>
+
+<h1>De vazut</h1>
+<%= render partial: "user_lists/status_list", collection: @de_vazut %>
 
 
 	

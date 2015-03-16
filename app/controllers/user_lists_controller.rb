@@ -5,11 +5,7 @@ class UserListsController < ApplicationController
   # GET /user_lists.json
   def index
     @user_lists = UserList.where(user_id: current_user.id)
-    
-    @vazute = UserList.where(status: true, user_id: current_user.id).map{|l| Movie.find(l.movie_id)}
-
-    @de_vazut = UserList.where(status: false,user_id: current_user.id).map{|l| Movie.find(l.movie_id)}
-    
+    @users_lists = UserList.all
   end
 
   # GET /user_lists/1
@@ -55,7 +51,7 @@ class UserListsController < ApplicationController
        user_list.status = false
        user_list.save
       end
-      redirect_to user_lists_path
+      redirect_to user_path(current_user)
   end
   def update
     
