@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :user_signed_in?, only: [:index, :edit, :update, :destroy,
+                                        :following, :followers]
 
 	def index
 		@users = User.all
@@ -11,4 +13,17 @@ class UsersController < ApplicationController
     @de_vazut = @user.user_lists.where(status: false).map{|l| Movie.find(l.movie_id)}
   end
 
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
 end

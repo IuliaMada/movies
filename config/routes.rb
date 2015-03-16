@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   resources :user_lists
   resources :movies
   resources :users
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+
   
   put 'change_status' => 'user_lists#change_status', as: :change_status
   # The priority is based upon order of creation: first created -> highest priority.
