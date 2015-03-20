@@ -24,6 +24,9 @@ gem 'rmagick', '~> 2.13.4'
 # Use jquery as the JavaScript library
 gem 'bootstrap-sass', '~> 3.3.3'
 
+gem 'faker', '~> 1.4.3'
+gem 'will_paginate', '~> 3.0.7'
+
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 
