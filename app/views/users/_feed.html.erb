@@ -1,0 +1,13 @@
+<% if @feed_items.any? %>
+  <ol class="user_lists">
+  	<%= User.find(feed.user_id).first_name %>
+  	a adaugat in lista
+  		<% if feed.status == false %>
+				"Vazut"
+			<% else %>
+				"Musai de vazut"
+			<% end %> filmul
+    <%= Movie.find(feed.movie_id).title %><br>
+    la: <%= feed.created_at %>
+  </ol>
+<% end %>
