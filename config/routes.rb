@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'movies#index'
 
+  resources :movies do
+    member do
+      put "like", to: "movies#upvote"
+      put "dislike", to: "movies#downvote"
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

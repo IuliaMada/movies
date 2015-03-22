@@ -3,7 +3,7 @@ class Movie < ActiveRecord::Base
 	has_many :user_lists
 	has_many :comments
 	validates :title, uniqueness: true
-
+	acts_as_votable
 
 	def self.search_db(query)
     where("title like ?","%#{query}%")

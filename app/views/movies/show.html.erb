@@ -29,8 +29,13 @@
         <%= @movie.duration%>
       </p>
       <p>
-        <strong>I like this movie:</strong>
-        	Ion,Marie,Andreis
+        <strong>Votes:</strong>
+        <i class="glyphicon glyphicon-thumbs-up"></i>
+        <%= @movie.get_likes.size %>
+        <%= link_to "Like", like_movie_path(@movie), method: :put %>
+        <i class="glyphicon glyphicon-thumbs-down"></i>
+        <%= @movie.get_dislikes.size %>
+        <%= link_to "Dislike", dislike_movie_path(@movie), method: :put %>
       </p>
    </div>
    <div class="col-md-4">

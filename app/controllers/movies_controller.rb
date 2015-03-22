@@ -31,4 +31,16 @@ class MoviesController < ApplicationController
     end
   end
 
+  def upvote
+    @movie = Movie.find(params[:id])
+    @movie.liked_by current_user
+    redirect_to @movie
+  end
+
+  def downvote
+    @movie = Movie.find(params[:id])
+    @movie.downvote_from current_user
+    redirect_to @movie
+  end
+
 end

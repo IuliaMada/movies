@@ -21,6 +21,8 @@ gem 'carrierwave', '~> 0.10.0'
 
 gem 'rmagick', '~> 2.13.4'
 
+gem 'acts_as_votable', '~> 0.10.0'
+
 # Use jquery as the JavaScript library
 gem 'bootstrap-sass', '~> 3.3.3'
 
