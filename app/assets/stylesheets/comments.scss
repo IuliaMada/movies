@@ -1,3 +1,30 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.commenterImage{
+	img{
+	width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+	}
+}
+.text{
+margin-left: 10px;
+	.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+    }
+}
+.text-color{
+	color:#337AB7;
+}
+
+.feed{
+    .sub-text{
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+    }
+}

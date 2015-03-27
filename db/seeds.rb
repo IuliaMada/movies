@@ -33,24 +33,41 @@
 # followers = users[3..40]
 # following.each { |followed| user.follow(followed) }
 # followers.each { |follower| follower.follow(user) }
+# n = 1
+# while n < 8
+# 	some_movies = [1,34,27,10,5]
+# 	some_movies.each do |movie|
+# 		UserList.create(status: true,
+#                     user_id: n,
+#                     movie_id: movie,
+#                     created_at: Time.zone.now)
+#  	end
+# 	n+=1
+# end
+
+# m = 1
+# while m < 8
+# 	some_movies = [13,20,31,21]
+# 	some_movies.each do |movie|
+#     UserList.create(status: false,
+#                     user_id: m,
+#                     movie_id: movie,
+#                     created_at: Time.zone.now)
+#  end
+# 	m+=1
+# end
 
 
-5.times do |n|
-some_users = [1,2,3,4,5,6,7,8,9]
-some_users.each do |user|
-    UserList.create!(status: true,
-                    user_id: user,
-                    movie_id: rand(1...10),
+
+c = 1
+while c < 8
+	some_movies = [1,34,27,10,5,13,20,31,21]
+	some_movies.each do |movie|
+		Comment.create( user_id: c,
+                    movie_id: movie,
+                    body: Faker::Lorem.sentence,
                     created_at: Time.zone.now)
-end
+ 	end
+	c+=1
 end
 
-5.times do |n|
-some_users = [1,2,3,4,5,6,7,8,9]
-some_users.each do |user|
-    UserList.create!(status: false,
-                    user_id: user,
-                    movie_id: rand(11...18),
-                    created_at: Time.zone.now)
-end
-end

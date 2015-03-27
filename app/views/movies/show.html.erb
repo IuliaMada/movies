@@ -1,78 +1,80 @@
-<div class="row">
-  <div class="col-md-3">
-    <p id="notice"><%= notice %></p>
-      <p>
-        <strong>Title:</strong>
-        <%= @movie.title%>
-      </p>
-      <p>
-        <%=image_tag @movie.poster%>
-      </p>
+<div class="container">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <strong><%= @movie.title%></strong>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-2">
+          <p id="notice"><%= notice %></p>
+          <p>
+            <%=image_tag (@movie.poster), :class => "movie_poster"%>
+          </p>
+          <p>
+            <i class="glyphicon glyphicon-thumbs-up"></i>
+            <%= @movie.get_likes.size %>
+            <%= link_to "Like", like_movie_path(@movie), method: :put %>
+            <i class="glyphicon glyphicon-thumbs-down"></i>
+            <%= @movie.get_dislikes.size %>
+            <%= link_to "Dislike", dislike_movie_path(@movie), method: :put %>
+          </p>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <%= @movie.duration%>|
+                <span class="text-color">
+                  <% @movie.genres.each do |g|%>
+                  <%= g.category %>|
+                  <% end %>
+                </span>
+              </p>
+              <p>
+                <strong>Countries:</strong>
+                <%=@movie.countries %>
+              </p>
+              <strong>IMDB rating:</strong>
+              <%= @movie.imdb_rating%>
+            </div>
+            <div class="col-md-6">
+              <% if lists_user(current_user.id).include?(@movie.id) %>
+                <p> Deja se afla intr-o lista </p>
+              <% else %>
+                <div class="col-md-3 ">
+                  <%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
+                  <%= hidden_field_tag :movie_id, @movie.id %>
+                  <%= hidden_field_tag :status, true  %>
+                  <%= hidden_field_tag :user_id, current_user.id  %>
+                  <%= submit_tag "Musai de vazut", :class=>"btn btn-success" %>
+                  <% end %>
+                </div>
+                 <div class="col-md-3 col-md-offset-1">
+                  <%= form_tag user_lists_path, :action => "create", :method => "post" do %>
+                  <%= hidden_field_tag :movie_id, @movie.id  %>
+                  <%= hidden_field_tag :status , false  %>
+                  <%= hidden_field_tag :user_id, current_user.id  %>
+                  <%= submit_tag "Vazut", :class=>"btn btn-success"  %>
+                  <% end %>
+                </div>    
+              <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <p><%=@movie.plot %></p>
+            </div>
+        </div>
+      </div>
+      <div class="row comment">
+        <div class="col-md-12">
+          <hr>
+          <%= button_to "Show comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true, class: "showbutton" %>
+          <div id="comments"></div>
+          <div id="add_comment"></div>
+          <%= button_to "Add comment", {controller: "comments", action: "new",id: @movie }, method: "get", remote: true  %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-5">
-      <p>
-        <strong>Genre:</strong>
-        <% @movie.genres.each do |g|%>
-        <%= g.category %>
-        <% end %>
-      </p>
-      <p>
-        <strong>Countries:</strong>
-        <%=@movie.countries %>
-      </p>
-      <p>
-        <strong>IMDB rating:</strong>
-        <%= @movie.imdb_rating%>
-      </p>
-      <p>
-        <strong>Runtime:</strong>
-        <%= @movie.duration%>
-      </p>
-      <p>
-        <i class="glyphicon glyphicon-thumbs-up"></i>
-        <%= @movie.get_likes.size %>
-        <%= link_to "Like", like_movie_path(@movie), method: :put %>
-        <i class="glyphicon glyphicon-thumbs-down"></i>
-        <%= @movie.get_dislikes.size %>
-        <%= link_to "Dislike", dislike_movie_path(@movie), method: :put %>
-      </p>
-   </div>
-   <div class="col-md-4">
-      <% if lists_user(current_user.id).include?(@movie.id) %>
-        <br>
-        <p> Deja se afla intr-o lista </p>
-      <% else %>
-          <%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
-          <%= hidden_field_tag :movie_id, @movie.id %>
-          <%= hidden_field_tag :status, true  %>
-          <%= hidden_field_tag :user_id, current_user.id  %>
-          <%= submit_tag "Musai de vazut" %>
-          <% end %>
-        
-          <%= form_tag user_lists_path, :action => "create", :method => "post" do %>
-          <%= hidden_field_tag :movie_id, @movie.id  %>
-          <%= hidden_field_tag :status , false  %>
-          <%= hidden_field_tag :user_id, current_user.id  %>
-          <%= submit_tag "Vazut"  %>
-          <% end %>
-      <% end %>
-  </div>
-</div>
-<div class="row">
-  <strong>Plot:</strong>
-    <%=@movie.plot %>
-</div>
-
-<div class="row">
-  <div id="comments"></div>
-
-<%= button_to "Show comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true, class: "showbutton" %>
-
-<div id="add_comment"></div>
-
-
-<%= button_to "Add comment", {controller: "comments", action: "new",id: @movie }, method: "get", remote: true  %>
-
-</div>
-
-

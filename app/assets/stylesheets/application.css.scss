@@ -19,11 +19,16 @@
  @import "user_lists.scss";
  @import "users.scss";
 
- body{
- 		background:white ;
 
- }
 .navbar-header{
 	margin:6px;
 	padding-right:8px; 
+}
+.footer{
+	background:#DFF0D8;
+}
+.navbar-text{
+	p{
+	color:#38482A;
+	}
 }

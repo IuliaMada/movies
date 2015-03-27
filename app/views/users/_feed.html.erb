@@ -1,13 +1,19 @@
+<div class="feed">
+
 <% if @feed_items.any? %>
   <ol class="user_lists">
   	<%= User.find(feed.user_id).first_name %>
-  	a adaugat in lista
+  	a adaugat in 
   		<% if feed.status == false %>
 				"Vazut"
 			<% else %>
 				"Musai de vazut"
 			<% end %> filmul
-    <%= Movie.find(feed.movie_id).title %><br>
-    la: <%= feed.created_at %>
+    <%= link_to Movie.find(feed.movie_id).title , movie_path(feed.movie_id) %><br>
+    in: 
+    <span class="sub-text">
+     <%= localize(feed.created_at,:format=>:long) %>
+    </span>
   </ol>
 <% end %>
+</div>

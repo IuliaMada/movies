@@ -1,6 +1,6 @@
-
+<div class="container-fluid" >
 <div class='row'>
-	<div class="col-md-3" >
+	<div class="col-md-2" >
 		<b><%= @user.first_name %></b>
 		<b><%= @user.last_name %></b><br>
 		<% if @user.image %>
@@ -27,7 +27,7 @@
 		  </div>
 		</div>
 	</div>
-	<div class="col-md-4" >
+	<div class="col-md-5" >
 		<h3>Feeds</h3>
 		<%= will_paginate @feed_items%>
 			<% if current_user == @user %>
@@ -36,7 +36,7 @@
 		<%= will_paginate @feed_items%>
 	</div>
 </div>
-
+</div>
 		
 	
 		
