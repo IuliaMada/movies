@@ -13,6 +13,14 @@
 		</p>
 		<p><%= movie.duration%></p>
 		<p>IMDB rating: <%= movie.imdb_rating%></p>
+		<p>
+			<i class="glyphicon glyphicon-thumbs-up"></i>
+      <%= movie.get_likes.size %>
+      <%= link_to "Like", like_movie_path(movie), method: :put %>
+      <i class="glyphicon glyphicon-thumbs-down"></i>
+      <%= movie.get_dislikes.size %>
+      <%= link_to "Dislike", dislike_movie_path(movie), method: :put %>
+		</p>
 	</div>
 	<div class="col-md-4">
 		<% if user_signed_in? %>

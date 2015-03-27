@@ -3,7 +3,7 @@ class UsersController < ApplicationController
                                         :following, :followers]
                                         
   def index
-		@users = User.all
+		@users = User.paginate(:page => params[:page],:per_page => 10)
 	end
 
   def show
@@ -14,9 +14,8 @@ class UsersController < ApplicationController
     
     if user_signed_in?
       @feeds = current_user.feed
-      @feed_items = @feeds.order(updated_at: :desc)
+      @feed_items = @feeds.order(updated_at: :desc).paginate(:page => params[:page],:per_page => 10)
     end
-
   end
 
   def following

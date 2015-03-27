@@ -1,9 +1,12 @@
 <table>
 	<tr>
 		<td>
-		  <%= status_list.title %><br>
+			<%= image_tag status_list.poster %>
+		  <%= status_list.title %>
 		</td>
 			<% if current_user.id == @user.id %>
+	</tr>
+	<tr>
 		<td>
 		  <%= form_tag change_status_path, :controller =>:movies, :method => "put"  do %>
 		          <%= hidden_field_tag :movie_id, status_list.id %>

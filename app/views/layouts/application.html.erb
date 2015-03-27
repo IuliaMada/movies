@@ -2,19 +2,19 @@
 <html>
   <head>
     <title>Movies</title>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">LOGOOOOOO</a>
+          <img src="../assets/movieHunter.png"/>
         </div>
         <div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><%= link_to "About","#" %></li>
+            <li><%= link_to "About", about_path %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>

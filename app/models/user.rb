@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
                      WHERE  follower_id = :user_id"
     UserList.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
-
   end
   
 

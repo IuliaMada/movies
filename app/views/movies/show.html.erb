@@ -29,7 +29,6 @@
         <%= @movie.duration%>
       </p>
       <p>
-        <strong>Votes:</strong>
         <i class="glyphicon glyphicon-thumbs-up"></i>
         <%= @movie.get_likes.size %>
         <%= link_to "Like", like_movie_path(@movie), method: :put %>

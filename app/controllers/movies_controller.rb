@@ -1,13 +1,17 @@
 class MoviesController < ApplicationController
 	include MoviesHelper
 
+  def about
+  end
   def index
   	if params[:movie_title].blank? && params[:genre]
-      if params[:genre] == "gen"
-        render index
-        flash[:notice] = "Choose a genre"
+      if params[:genre] == ""
+        flash[:notice] = "Choose a movie by title or by genre"
+        redirect_to movies_path
+        
+      else
+        @movies = search_category(params[:genre])
       end
-      @movies = search_category(params[:genre])
 
     elsif params[:movie_title]
       response = HTTParty.get("http://myapifilms.com/imdb?title=#{params[:movie_title].gsub(' ', '%20')}&limit=10")
@@ -32,15 +36,27 @@ class MoviesController < ApplicationController
   end
 
   def upvote
-    @movie = Movie.find(params[:id])
-    @movie.liked_by current_user
-    redirect_to @movie
+    if user_signed_in?
+      @movie = Movie.find(params[:id])
+      @movie.liked_by current_user
+      redirect_to @movie
+    else
+      redirect_to user_session_path
+      flash[:notice] = "Log in if you want to vote"
+    end
   end
 
   def downvote
-    @movie = Movie.find(params[:id])
-    @movie.downvote_from current_user
-    redirect_to @movie
+    if user_signed_in?
+      @movie = Movie.find(params[:id])
+      @movie.downvote_from current_user
+      redirect_to @movie
+    else
+      redirect_to user_session_path
+      flash[:notice] = "Log in if you want to vote"
+    end
   end
+
+
 
 end

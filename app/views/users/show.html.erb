@@ -1,53 +1,47 @@
-<h2>My Profile</h2>
 
-<table>
-	<tr>
-		<td>
-			<b><%= @user.first_name %></b>
-			<b><%= @user.last_name %></b>
-		</td>
-		<td>
-			<%= render 'follow_form' if user_signed_in? %>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<% if @user.image %>
-				<%= image_tag @user.image %>				
+<div class='row'>
+	<div class="col-md-3" >
+		<b><%= @user.first_name %></b>
+		<b><%= @user.last_name %></b><br>
+		<% if @user.image %>
+			<%= image_tag @user.image %>				
+		<% end %>
+		<%= render 'stats' %><br>
+		<%=link_to "Edit profile", edit_user_registration_path %><br><br>
+		<%= render 'follow_form' if user_signed_in? %>
+	</div>
+	<div class="col-md-5" >
+		<div class="lists">
+		  <ul class="nav nav-tabs">
+		    <li class="active"><a data-toggle="tab" href="#musai">Musai de vazut</a></li>
+		    <li><a data-toggle="tab" href="#vazute">Vazute</a></li>
+		  </ul>
+		  <div class="tab-content">
+		    <div id="musai" class="tab-pane fade in active">
+		      <p><%= render partial: "user_lists/status_list", collection: @de_vazut %></p>
+		            
+		    </div>
+		    <div id="vazute" class="tab-pane fade">
+		      <%= render partial: "user_lists/status_list", collection: @vazute %>
+		    </div>    
+		  </div>
+		</div>
+	</div>
+	<div class="col-md-4" >
+		<h3>Feeds</h3>
+		<%= will_paginate @feed_items%>
+			<% if current_user == @user %>
+			 <%= render partial: "feed", collection: @feed_items %>
 			<% end %>
-		</td>
-		<td>
-			<p>Listele magice:</p>
-		<td>
-		<td>
-			<br>
-    	<ul class="nav nav-tabs">
-  			<li class="active"><a href="/user_lists">Musai de vazut</a></li>
-  			<li><a href="/user_lists">Vazute</a></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td>
-      <%= render 'stats' %>
-		</td>
-	</tr>
-</table>
-<br>
-<%=link_to "Edit profile", edit_user_registration_path %>
+		<%= will_paginate @feed_items%>
+	</div>
+</div>
+
+		
+	
+		
+      
 
 
-<br>
-<h1>Vazute </h1>
 
-<%= render partial: "user_lists/status_list", collection: @vazute %>
-<br>
-
-<h1>De vazut</h1>
-<%= render partial: "user_lists/status_list", collection: @de_vazut %>
-
-<h3>Feeds</h3>
-<% if current_user == @user %>
- <%= render partial: "feed", collection: @feed_items %>
-<% end %>
 
