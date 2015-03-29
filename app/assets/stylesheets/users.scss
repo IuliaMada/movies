@@ -1,21 +1,129 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .log-form{
 	margin: 0 auto; 
   width:270px
 }
 .bg-picture{
-	background: url(/assets/railway.jpg);
-}
-.poster{
-	img{
-		width:10%;
-	}
+	background: url(/assets/grass.jpg);
 }
 
-.container{
+body{
+	margin:0;
+	background: url(/assets/corn3.jpg);
+	background-size: 1440px 800px;
+  background-repeat:no-repeat;
+  display: compact;
+}
+
+.feed{
+    .sub-text{
+    	color:#aaa;
+    	font-family:verdana;
+    	font-size:11px;
+    }
+}
+
+//page show for user
+
+.show{
+	background:#D6F0C3;
+}
+
+.user_page{
+	height:880px;
+	.profile{
+		background:white;
+		margin-right:1px;
+		border-radius: 5px;
+		height:150px;
+			img{
+				margin-left:100px;
+				margin-top:5px;
+			}
+			.about-user{
+			margin-top:15px;
+			}
+			.button-follow{
+				margin-top:50px;
+
+			}
+	}
+	.lists{
+		background:white;
+		margin-right:1px;
+		margin-top:13px;
+		border-radius: 5px;
+	}
+	.feed-panel{
+		height:800px;
+		margin-bottom:15px;
+		.panel-show{
+			img{
+				width:40px;
+			}
+		}
+	}
+	.title{
+	margin-top:10px;
+	margin-left:10px;
+	
+	}
+	.title-list{
+	margin-top:10px;
+	margin-left:10px;
+	margin-bottom:10px;
+	}	
+}
+
+//index for all users
+.panel-index{
+	background: #C1E4B9;
+	.index{
+		width: 700px;
+		height:1150px;
+		margin:0 auto;
+	}
 	.users{
-		padding-left:100px;
+		padding-left:120px;
+	}
+	img{
+		width:60px;
 	}
 }
+//status_lists
+
+.list-group{
+	margin-top:30px;
+	ul{
+		list-style: none;
+	}
+		img{
+		width:30px;
+		}
+		.btn{
+		background:#5CB85C;
+		}
+}
+
+.fallow{
+		background:white;
+		opacity: 0.9;
+		height:300px;
+		margin-top:100px;
+		padding-left:30px;
+		color:#256B25;
+		img{
+			margin-top:30px;
+		}
+		a{
+			color:light-blue;
+		}
+	.users-fallow{
+		margin-top:30px;
+	}
+	}
+
+

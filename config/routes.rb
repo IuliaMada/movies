@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :user_lists
   # resources :movies
-  resources :users
 
   resources :users do
     member do

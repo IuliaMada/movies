@@ -1,22 +1,26 @@
 <% provide(:title, @title) %>
+
+<div class="container fallow">
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
+  <aside class="col-md-3">
+    <section >
       <%= image_tag @user.image %>
-      <h1><%= @user.first_name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-    </section>
-    <section class="stats">
+      <section class="stats">
       <%= render 'stats' %>
     </section>
+      <h3><%= @user.first_name %></h3>
+      <span><%= link_to "view my profile", @user %></span>
+    </section>
+    
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-8 users-fallow">
     <h3><%= @title %></h3>
     <% if @users.any? %>
-      <ul class="users follow">
+      <ul>
         <%= render @users %>
       </ul>
-      <%= will_paginate %>
+      
     <% end %>
   </div>
+</div>
 </div>

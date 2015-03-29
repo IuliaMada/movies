@@ -1,24 +1,24 @@
 
- <ul class="list-group">
-   <li class="list-group-item">
-     <div class="commenterImage">
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="commenterImage">
       <%= image_tag(comment.user.image, :class => "img-circle" )%>
       <%= comment.user.first_name %>
-     </div>
-     <div class="text">  <p>
-  <%= comment.body %> &nbsp;
-  <% if current_user.comments.include?(comment) %>
-	  <%= link_to 'Edit', edit_comment_path(comment) %>
-	  <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-  </p>
-
-  <span class="sub-text">
-  at
-   <%= localize(comment.created_at,:format=>:long)%>
-  </span>
-  </div>
+    </div>
+    <div class="text">
+    <p>
+      <%= comment.body %> &nbsp;
+      <% if current_user.comments.include?(comment) %>
+    	  <%= link_to 'Edit', edit_comment_path(comment) %>
+    	  <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </p>
+      <span class="sub-text">
+        at
+        <%= localize(comment.created_at,:format=>:long)%>
+        </span>
+    </div>
   </li>
- </ul>
+</ul>
 
 

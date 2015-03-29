@@ -1,13 +1,12 @@
 <div class="feed">
-
 <% if @feed_items.any? %>
-  <ol class="user_lists">
-  	<%= User.find(feed.user_id).first_name %>
-  	a adaugat in 
-  		<% if feed.status == false %>
-				"Vazut"
+  <ol>
+    <%= User.find(feed.user_id).first_name %>
+  	a adaugat in lista 
+  		<% if feed.status == true %>
+				<span class="glyphicon glyphicon-sunglasses"></span> <i>Vazute</i>
 			<% else %>
-				"Musai de vazut"
+			  <span class="glyphicon glyphicon-heart"></span><i>Musai de vazut</i>
 			<% end %> filmul
     <%= link_to Movie.find(feed.movie_id).title , movie_path(feed.movie_id) %><br>
     in: 
@@ -17,3 +16,5 @@
   </ol>
 <% end %>
 </div>
+
+

@@ -3,19 +3,17 @@ class UsersController < ApplicationController
                                         :following, :followers]
                                         
   def index
-		@users = User.paginate(:page => params[:page],:per_page => 10)
+		@users = User.paginate(:page => params[:page],:per_page => 9)
 	end
 
   def show
     @user = User.includes(:user_lists).find(params[:id])
     @vazute = @user.user_lists.where(status: true).map{|l| Movie.find(l.movie_id)}
-
     @de_vazut = @user.user_lists.where(status: false).map{|l| Movie.find(l.movie_id)}
-    
-    if user_signed_in?
+
       @feeds = current_user.feed
-      @feed_items = @feeds.order(updated_at: :desc).paginate(:page => params[:page],:per_page => 10)
-    end
+      @feed_items = @feeds.order(updated_at: :desc).paginate(:page => params[:page],:per_page => 9) 
+      @users = User.all.paginate(:page => params[:page],:per_page => 5) 
   end
 
   def following
@@ -30,5 +28,5 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
-  end
+  end 
 end

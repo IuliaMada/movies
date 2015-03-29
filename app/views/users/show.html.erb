@@ -1,43 +1,77 @@
-<div class="container-fluid" >
-<div class='row'>
-	<div class="col-md-2" >
-		<b><%= @user.first_name %></b>
-		<b><%= @user.last_name %></b><br>
-		<% if @user.image %>
-			<%= image_tag @user.image %>				
-		<% end %>
-		<%= render 'stats' %><br>
-		<%=link_to "Edit profile", edit_user_registration_path %><br><br>
-		<%= render 'follow_form' if user_signed_in? %>
-	</div>
-	<div class="col-md-5" >
-		<div class="lists">
-		  <ul class="nav nav-tabs">
-		    <li class="active"><a data-toggle="tab" href="#musai">Musai de vazut</a></li>
-		    <li><a data-toggle="tab" href="#vazute">Vazute</a></li>
-		  </ul>
-		  <div class="tab-content">
-		    <div id="musai" class="tab-pane fade in active">
-		      <p><%= render partial: "user_lists/status_list", collection: @de_vazut %></p>
-		            
-		    </div>
-		    <div id="vazute" class="tab-pane fade">
-		      <%= render partial: "user_lists/status_list", collection: @vazute %>
-		    </div>    
-		  </div>
+<div class="container-fluid show">
+<div class="container user_page">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row profile">
+				<div class="col-md-4 panel ">
+					<% if @user.image %>
+						<%= image_tag @user.image,:class=>"img-thumbnail" %>		
+					<% end %>
+				</div>
+				<div class="col-md-4 panel about-user">
+					<b><%= @user.first_name %></b>
+					<b><%= @user.last_name %></b><br><br>
+					<%= render 'stats' %><br>
+					<%=link_to "Edit profile", edit_user_registration_path %>
+				</div>
+				<div class="col-md-4 button-follow">
+					<%= render 'follow_form' if user_signed_in? %>
+				</div>
+			</div>
+			<div class="row lists">
+				<div class="lists">
+					<div class="title-list"> Filmele tale </div>
+		  		<ul class="nav nav-tabs">
+		    		<li class="active"><a data-toggle="tab" href="#musai">Musai de vazut</a></li>
+		    		<li><a data-toggle="tab" href="#vazute">Vazute</a></li>
+		  		</ul>
+		  		<div class="tab-content">
+			    	<div id="musai" class="tab-pane fade in active">
+			      <p><%= render partial: "user_lists/status_list", collection: @de_vazut %></p>     
+			    	</div>
+				    <div id="vazute" class="tab-pane fade">
+				      <%= render partial: "user_lists/status_list", collection: @vazute %>
+				    </div>
+				  </div>    
+		  	</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-md-5" >
-		<h3>Feeds</h3>
-		<%= will_paginate @feed_items%>
+		<div class="col-md-4 panel feed-panel ">
 			<% if current_user == @user %>
-			 <%= render partial: "feed", collection: @feed_items %>
+				<div class="title">Activitate</div>
+				<%= will_paginate @feed_items%>
+			 		<%= render partial: "feed", collection: @feed_items %>
+				<%= will_paginate @feed_items%>	
+			<% else %>
+				<div class="panel-show">
+					<%= will_paginate @users%>
+						<% @users.each do |user| %>
+							<%= link_to image_tag(user.image), user_path(user), :class=> "img-responsive" %>
+							<%= user.first_name %>
+							<%= user.last_name %>
+								<div class="stats">
+									<a href="<%= following_user_path(user) %>">
+										<strong id="following" class="stat">
+									  	<%= user.following.count %>
+										</strong>
+										following
+								  </a>
+								  <a href="<%= followers_user_path(user) %>">
+										<strong id="followers" class="stat">
+									  	<%= user.followers.count %>
+										</strong>
+										followers
+								  </a>
+							  </div>
+						<% end %>
+					<%= will_paginate @users%>
+				</div>
 			<% end %>
-		<%= will_paginate @feed_items%>
+		</div>
+		
 	</div>
 </div>
-</div>
-		
+</div>	
 	
 		
       

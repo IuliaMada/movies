@@ -44,7 +44,7 @@
                 <div class="col-md-3 ">
                   <%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
                   <%= hidden_field_tag :movie_id, @movie.id %>
-                  <%= hidden_field_tag :status, true  %>
+                  <%= hidden_field_tag :status, false  %>
                   <%= hidden_field_tag :user_id, current_user.id  %>
                   <%= submit_tag "Musai de vazut", :class=>"btn btn-success" %>
                   <% end %>
@@ -52,7 +52,7 @@
                  <div class="col-md-3 col-md-offset-1">
                   <%= form_tag user_lists_path, :action => "create", :method => "post" do %>
                   <%= hidden_field_tag :movie_id, @movie.id  %>
-                  <%= hidden_field_tag :status , false  %>
+                  <%= hidden_field_tag :status , true  %>
                   <%= hidden_field_tag :user_id, current_user.id  %>
                   <%= submit_tag "Vazut", :class=>"btn btn-success"  %>
                   <% end %>

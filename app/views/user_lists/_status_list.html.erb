@@ -1,25 +1,22 @@
-<table>
-	<tr>
-		<td>
-			<div class="poster">
-			 <%=link_to image_tag(status_list.poster), movie_path(status_list) %> 
-		  <b><%= status_list.title %></b>
-		  </div>
-		</td>
-			<% if current_user.id == @user.id %>
-	</tr>
-	<tr>
-		<td>
-		  <%= form_tag change_status_path, :controller =>:movies, :method => "put"  do %>
-		          <%= hidden_field_tag :movie_id, status_list.id %>
-		          <%= hidden_field_tag :user_id, @user.id  %>
-		          <%= submit_tag "Muta in cealalta lista" %>
-		  <% end %>
-		</td>
-		<td>
-		  <%= button_to "Delete", {:controller => :movies,
-		      :action => 'destroy', :id => status_list.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
-		</td>
-		<% end %>
-	</tr><hr>
-</table>
+<div class="list-group">
+	<ul>
+  	<li>
+ 			<div class="row">
+ 				<div class="col-md-6 ">
+			 		<%=link_to image_tag(status_list.poster), movie_path(status_list) %> 
+		  		  &nbsp;<b><%= status_list.title %></b>
+		  		<% if current_user.id == @user.id %>
+		  			<%= link_to 'Destroy', {:controller => :movies,:action => 'destroy', :id => status_list.id }, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</div>
+				<div class="col-md-6">
+				  	&nbsp;<%= form_tag change_status_path, :controller =>:movies, :method => "put"  do %>
+				         	<%= hidden_field_tag :movie_id, status_list.id %>
+				          <%= hidden_field_tag :user_id, @user.id  %>
+				          <%= submit_tag "Muta in cealalta lista",:class=>"btn" %>
+				  	<% end %>
+					<% end %>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
