@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   resources :comments
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+
   resources :user_lists
   # resources :movies
 
-  resources :users do
+  resources :users, except: [:new, :edit, :update, :destroy, :create] do
     member do
       get :following, :followers
     end
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   get 'about' => 'movies#about', as: :about
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -2,20 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.log-form{
-	margin: 0 auto; 
-  width:270px
-}
-.bg-picture{
-	background: url(/assets/grass.jpg);
-}
+
 
 body{
 	margin:0;
-	background: url(/assets/corn3.jpg);
+	background: url(/assets/cereal.jpg);
 	background-size: 1440px 800px;
-  background-repeat:no-repeat;
-  display: compact;
+  	background-repeat:repeat;
+  	display: compact;
 }
 
 .feed{
@@ -28,17 +22,18 @@ body{
 
 //page show for user
 
-.show{
-	background:#D6F0C3;
-}
+
 
 .user_page{
-	height:880px;
+	height:1135px;
+	opacity:0.9;
+	margin-top:15px;
 	.profile{
 		background:white;
-		margin-right:1px;
 		border-radius: 5px;
-		height:150px;
+		border: 2px #e4e4e4 solid;
+		height:155px;
+		margin-right:-7px;
 			img{
 				margin-left:100px;
 				margin-top:5px;
@@ -53,14 +48,22 @@ body{
 	}
 	.lists{
 		background:white;
-		margin-right:1px;
-		margin-top:13px;
+		height:905px;
+		margin-top:7px;
 		border-radius: 5px;
+		border: 2px #e4e4e4 solid;
+		margin-right:-7px;
+
+		#vazute{
+			padding-top: 10px;
+		}
 	}
 	.feed-panel{
-		height:800px;
+		height:1068px;
 		margin-bottom:15px;
+		border: 2px #e4e4e4 solid;
 		.panel-show{
+
 			img{
 				width:40px;
 			}
@@ -84,7 +87,7 @@ body{
 	.index{
 		width: 700px;
 		height:1150px;
-		margin:0 auto;
+		margin:20px auto;
 	}
 	.users{
 		padding-left:120px;
@@ -96,7 +99,6 @@ body{
 //status_lists
 
 .list-group{
-	margin-top:30px;
 	ul{
 		list-style: none;
 	}
@@ -104,24 +106,27 @@ body{
 		width:30px;
 		}
 		.btn{
-		background:#5CB85C;
+		background:white;
+		border:1px solid grey;
 		}
 }
 
-.fallow{
+.follow{
 		background:white;
 		opacity: 0.9;
 		height:300px;
-		margin-top:100px;
+		margin-top:70px;
 		padding-left:30px;
 		color:#256B25;
+		border: 2px #e4e4e4 solid;
+		border-radius:5px;
 		img{
 			margin-top:30px;
 		}
 		a{
 			color:light-blue;
 		}
-	.users-fallow{
+	.users-follow{
 		margin-top:30px;
 	}
 	}

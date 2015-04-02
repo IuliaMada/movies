@@ -10,7 +10,8 @@ class MoviesController < ApplicationController
         redirect_to movies_path
         
       else
-        @movies = search_category(params[:genre])
+        movies = search_category(params[:genre])
+        @movies = movies.paginate(:page => params[:page],:per_page => 15) 
       end
 
     elsif params[:movie_title]
@@ -18,7 +19,8 @@ class MoviesController < ApplicationController
   	 	@movies_result = JSON.parse(response)
       add_genres_to_db(@movies_result)
       add_movie_to_db(@movies_result)
-      @movies = Movie.search_db(params[:movie_title])
+      movies = Movie.search_db(params[:movie_title])
+      @movies = movies.paginate(:page => params[:page],:per_page => 15) 
     end
   end 
 

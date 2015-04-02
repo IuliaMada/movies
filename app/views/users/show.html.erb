@@ -19,21 +19,23 @@
 				</div>
 			</div>
 			<div class="row lists">
-				<div class="lists">
-					<div class="title-list"> Filmele tale </div>
+					<div class="title-list"> Filme preferate </div>
 		  		<ul class="nav nav-tabs">
 		    		<li class="active"><a data-toggle="tab" href="#musai">Musai de vazut</a></li>
 		    		<li><a data-toggle="tab" href="#vazute">Vazute</a></li>
 		  		</ul>
 		  		<div class="tab-content">
 			    	<div id="musai" class="tab-pane fade in active">
-			      <p><%= render partial: "user_lists/status_list", collection: @de_vazut %></p>     
+			    		<%= will_paginate @de_vazut%>	
+			      		<p><%= render partial: "user_lists/status_list", collection: @de_vazut %></p> 
+			      	<%= will_paginate @de_vazut%>	    
 			    	</div>
 				    <div id="vazute" class="tab-pane fade">
-				      <%= render partial: "user_lists/status_list", collection: @vazute %>
+				    	<%= will_paginate @vazute%>	
+				      	<%= render partial: "user_lists/status_list", collection: @vazute %>
+				      <%= will_paginate @vazute%>	
 				    </div>
 				  </div>    
-		  	</div>
 			</div>
 		</div>
 		<div class="col-md-4 panel feed-panel ">

@@ -1,29 +1,100 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// You can use Sass (SCSS) here: http://sass-lang.com
+.well{
+	margin-top: 30px;
+	.jumbotron{
+		background:#DFE9D7;
+		padding-top: 50px;
+		opacity:1;
 
+		input{
+			height: 30px;
 
-.jumbotron{
-	background: url(/assets/bg.png);
-
-	input{
-		height: 30px;
-
+		}
+		#genre{
+			height: 30px;
+		}
 	}
-	#genre{
-		height: 30px;
+}
+
+.down{
+	margin-top: 80px;
+}
+.well-bg{
+	background: url(/assets/cereal.jpg);
+}
+
+.log-form{
+	margin: 0 auto; 
+  width:270px
+}
+.no-bg-picture{
+	background: white;
+	height:1000px;
+}
+.plot{
+	padding-top: 10px;
+}
+
+
+//search result
+
+.search_result{
+	padding-left:40px;
+}
+
+.movie{
+	background: #DFE9D7;
+	border: 1px #e4e4e4 solid;
+	margin:5px;
+	width:360px;
+	height:180px;
+	padding-top:10px;
+	padding-left:20px; 
+	opacity:1;
+
+	.title{
+		padding-bottom: 10px;
+	} 
+	
+	.genre{
+	font-size:12px;
+	color:grey;
+	}
+	
+	.img_movie{
+		img{
+		width:55px;
+		border: 1px #e4e4e4 solid;
+		}
+	}
+	.text{
+		font-size:12px;
+		margin-left:0;
+	}
+	.text_no_button{
+		color:#337AB7;
+		size:15px;
+		font-weight: italic;
+		text-align: center;
+	
+	}	
+	.button{
+		padding-top:15px; 
 	}
 }
 
-.img-movie{
-	img{
-	width:30%;
+
+
+//show page for movies
+
+.movie-page{
+	margin:50px;
+	.movie_poster{
+		width: 150px;
 	}
 }
-.movie_poster{
-	width: 150px;
-}
-
 .comment{
 	padding-left: 10px;
 	padding-right: 10px;

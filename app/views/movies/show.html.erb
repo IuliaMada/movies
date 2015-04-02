@@ -1,15 +1,17 @@
-<div class="container">
-  <div class="panel panel-success">
-    <div class="panel-heading">
+<div class="container-fluid no-bg-picture">
+  <div class="panel panel-success movie-page">
+    <div class="panel-heading movie-title">
       <strong><%= @movie.title%></strong>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-md-2">
           <p id="notice"><%= notice %></p>
-          <p>
-            <%=image_tag (@movie.poster), :class => "movie_poster"%>
-          </p>
+            <% if @movie.poster.blank? %>
+              <img src="/assets/default_size4.jpg", class="movie_poster"></img>
+            <% else %>
+              <%=image_tag (@movie.poster), :class => "movie_poster"%>
+            <% end %>
           <p>
             <i class="glyphicon glyphicon-thumbs-up"></i>
             <%= @movie.get_likes.size %>
@@ -26,7 +28,7 @@
                 <%= @movie.duration%>|
                 <span class="text-color">
                   <% @movie.genres.each do |g|%>
-                  <%= g.category %>|
+                  |<%= g.category %>
                   <% end %>
                 </span>
               </p>
@@ -35,9 +37,9 @@
                 <%=@movie.countries %>
               </p>
               <strong>IMDB rating:</strong>
-              <%= @movie.imdb_rating%>
+              <%= @movie.imdb_rating%>/10
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 plot">
               <% if lists_user(current_user.id).include?(@movie.id) %>
                 <p> Deja se afla intr-o lista </p>
               <% else %>
@@ -61,7 +63,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 plot">
               <p><%=@movie.plot %></p>
             </div>
         </div>
@@ -73,8 +75,8 @@
           <div id="comments"></div>
           <div id="add_comment"></div>
           <%= button_to "Add comment", {controller: "comments", action: "new",id: @movie }, method: "get", remote: true  %>
-          </div>
         </div>
       </div>
-    </div>
+    </div>  
   </div>
+</div>

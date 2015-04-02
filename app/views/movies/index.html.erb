@@ -2,12 +2,15 @@
 <div class="container well" >
 	<p class="notice"><%= notice %></p>
 	<div class="jumbotron">
-	<%= render 'search' %>
+		<%= render 'search' %>
 	</div>
-
 	<% if params[:movie_title] %>
-		<h3>Search result:</h3>
-		<%= render @movies %>
+		<h5>Search result:</h5>
+		<%= will_paginate @movies%>
+		<div class="row search_result">
+			<%= render  @movies %>
+		</div>
+		<%= will_paginate @movies%>
 	<% end %>
 </div>
 

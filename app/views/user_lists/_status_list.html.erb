@@ -2,13 +2,16 @@
 	<ul>
   	<li>
  			<div class="row">
- 				<div class="col-md-6 ">
+ 				<div class="col-md-7 ">
 			 		<%=link_to image_tag(status_list.poster), movie_path(status_list) %> 
-		  		  &nbsp;<b><%= status_list.title %></b>
+		  		  &nbsp;<% movies = status_list.title.split  %>
+									<% movies.pop  %>
+									<b><%= movies.join(' ')%></b>
+								(<%= status_list.title.split.last %>)
 		  		<% if current_user.id == @user.id %>
 		  			<%= link_to 'Destroy', {:controller => :movies,:action => 'destroy', :id => status_list.id }, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-5">
 				  	&nbsp;<%= form_tag change_status_path, :controller =>:movies, :method => "put"  do %>
 				         	<%= hidden_field_tag :movie_id, status_list.id %>
 				          <%= hidden_field_tag :user_id, @user.id  %>

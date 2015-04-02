@@ -1,51 +1,75 @@
+<div class="col-md-4 movie">
 
-<div class="row">
-  <div class="col-md-3">
-  	<div class="img-thumbnail">
-	  	<% if user_signed_in? %>
-	    	<%= link_to image_tag(movie.poster), movie_path(movie.id), :class=> "img-movie" %>
-	    <% else %>
-	    	<%= link_to image_tag(movie.poster), user_session_path, :class=> "img-movie" %>
-	    <% end %>
-  	</div>
-  </div>
-  <div class="col-md-5">
-    <h3><%= movie.title%></h3>
-    <p> <% movie.genres.each do |gen|%>
-					<%= gen.category %> |
-				<% end %>
-		</p>
-		<p><%= movie.duration%></p>
-		<p>IMDB rating: <%= movie.imdb_rating%></p>
-		<p>
-			<i class="glyphicon glyphicon-thumbs-up"></i>
-      <%= movie.get_likes.size %>
-      <%= link_to "Like", like_movie_path(movie), method: :put %>
-      <i class="glyphicon glyphicon-thumbs-down"></i>
-      <%= movie.get_dislikes.size %>
-      <%= link_to "Dislike", dislike_movie_path(movie), method: :put %>
-		</p>
+	<div class="row"> 
+		<div class="col-md-12 title">
+			<% movies = movie.title.split  %>
+			<% movies.pop  %>
+			<b><%= movies.join(' ')%></b>
+			(<%= movie.title.split.last %>)
+		</div>
 	</div>
-	<div class="col-md-4">
-		<% if user_signed_in? %>
-			<% if lists_user(current_user.id).include?(movie.id) %>
-				<h4> Deja se afla intr-o lista</h4>
-			<% else %>
-				<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
-				  <%= hidden_field_tag :movie_id, movie.id %>
-					<%= hidden_field_tag :status, true  %>
-					<%= hidden_field_tag :user_id, current_user.id  %>
-					<%= submit_tag "Vazut",class:"btn btn-primary" %>
-				<% end %>
-				<%= form_tag user_lists_path, :action => "create", :method => "post" do  %>
-					<%= hidden_field_tag :movie_id, movie.id  %>
-					<%= hidden_field_tag :status , false  %>
-					<%= hidden_field_tag :user_id, current_user.id  %>
-					<%= submit_tag "Musai de vazut",class:"btn btn-primary"  %>
-				<% end %>		
-			<% end %>
-		<% end %>
-	</div>  
-</div>
 
-#ED9F5D
+		<div class="row"> 
+			<div class="col-md-3">
+				<% if movie.poster.blank? %>    
+          <%= link_to image_tag("default_size4.jpg"), movie_path(movie.id), :class=> "img_movie" %>
+        <% else %>
+          <% if user_signed_in? %>
+				    <%= link_to image_tag(movie.poster), movie_path(movie.id), :class=> "img_movie" %>
+				  <% else %>
+				    <%= link_to image_tag(movie.poster), user_session_path, :class=> "img_movie" %>
+				  <% end %>
+        <% end %>	
+        
+	    </div>
+	    <div class="col-md-9 ">
+				
+		    <span class="genre"> <% movie.genres.each do |gen|%>
+							<%= gen.category %> |
+						<% end %>
+				</span><br>
+				<span class="text">
+					<i class="glyphicon glyphicon-thumbs-up"></i>
+		      <%= movie.get_likes.size %>
+		      <%= link_to "Like", like_movie_path(movie), method: :put %>
+		      <i class="glyphicon glyphicon-thumbs-down"></i>
+		      <%= movie.get_dislikes.size %>
+		      <%= link_to "Dislike", dislike_movie_path(movie), method: :put %>
+				</span ><br>
+				<span class="text">IMDB: <%= movie.imdb_rating%>/10</span>
+			</div>
+		</div>
+
+		<div class="row button">		
+			<% if user_signed_in? %>
+				<% if lists_user(current_user.id).include?(movie.id) %>
+					<% a = UserList.find_by(user_id: current_user, movie_id: movie.id)%>
+					<p class="text_no_button"> Se afla in lista<i>
+						<% if a.status == true %>
+							Vazute
+						<% else %>
+							Musai de vazut
+						<% end %>
+					</i></p>
+				<% else %>
+				<div class="col-md-2 col-md-offset-3 ">
+						<%= form_tag user_lists_path, :action => "create", :method => "post"  do %>
+						  <%= hidden_field_tag :movie_id, movie.id %>
+							<%= hidden_field_tag :status, true  %>
+							<%= hidden_field_tag :user_id, current_user.id  %>
+							<%= submit_tag "Vazut",class:"btn btn-primary btn-xs" %>
+						<% end %>
+				</div>
+				<div class="col-md-7">
+					<%= form_tag user_lists_path, :action => "create", :method => "post" do  %>
+						<%= hidden_field_tag :movie_id, movie.id  %>
+						<%= hidden_field_tag :status , false  %>
+						<%= hidden_field_tag :user_id, current_user.id  %>
+						<%= submit_tag "Musai de vazut",class:"btn btn-primary btn-xs"  %>
+					<% end %>
+				</div>	
+				<% end %>
+			<% end %>	
+		</div>
+	
+</div>
