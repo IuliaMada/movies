@@ -1,4 +1,4 @@
-<div class="container-fluid show">
+<div class="container-fluid show ">
 <div class="container user_page">
 	<div class="row">
 		<div class="col-md-8">
@@ -12,7 +12,10 @@
 					<b><%= @user.first_name %></b>
 					<b><%= @user.last_name %></b><br><br>
 					<%= render 'stats' %><br>
-					<%=link_to "Edit profile", edit_user_registration_path %>
+					<% if current_user == @user %>
+						<%=link_to "Edit profile", edit_user_registration_path %>
+
+					<% end %>
 				</div>
 				<div class="col-md-4 button-follow">
 					<%= render 'follow_form' if user_signed_in? %>

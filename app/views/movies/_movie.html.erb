@@ -1,5 +1,4 @@
 <div class="col-md-4 movie">
-
 	<div class="row"> 
 		<div class="col-md-12 title">
 			<% movies = movie.title.split  %>
@@ -11,16 +10,20 @@
 
 		<div class="row"> 
 			<div class="col-md-3">
-				<% if movie.poster.blank? %>    
-          <%= link_to image_tag("default_size4.jpg"), movie_path(movie.id), :class=> "img_movie" %>
-        <% else %>
-          <% if user_signed_in? %>
+				<% if user_signed_in? %>
+					<% if movie.poster.blank? %>    
+          	<%= link_to image_tag("default_size4.jpg"), movie_path(movie.id), :class=> "img_movie" %>
+        	<% else %>
 				    <%= link_to image_tag(movie.poster), movie_path(movie.id), :class=> "img_movie" %>
-				  <% else %>
-				    <%= link_to image_tag(movie.poster), user_session_path, :class=> "img_movie" %>
-				  <% end %>
-        <% end %>	
-        
+					<% end %>
+				<% else %>
+					<% if movie.poster.blank? %>    
+          <%= link_to image_tag("default_size4.jpg"),  user_session_path, :class=> "img_movie" %>
+        	<% else %>
+     
+				    <%= link_to image_tag(movie.poster),  user_session_path, :class=> "img_movie" %>
+				 	<% end %>
+        <% end %>	 
 	    </div>
 	    <div class="col-md-9 ">
 				

@@ -1,6 +1,5 @@
 
-<div class="container well" >
-	<p class="notice"><%= notice %></p>
+<div class="container well " >
 	<div class="jumbotron">
 		<%= render 'search' %>
 	</div>
@@ -10,7 +9,7 @@
 		<div class="row search_result">
 			<%= render  @movies %>
 		</div>
-		<%= will_paginate @movies%>
+		<%= will_paginate @movies%>	
 	<% end %>
 </div>
 

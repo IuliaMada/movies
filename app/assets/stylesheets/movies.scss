@@ -1,19 +1,30 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com
+
+body{
+	background: #e1e1d7; 
+}
+
 .well{
 	margin-top: 30px;
+	background-image: url("4.png");
+	background-repeat: no-repeat;
+	background-size: 1170px 228px ;
+	margin-top: 70px;
 	.jumbotron{
-		background:#DFE9D7;
-		padding-top: 50px;
-		opacity:1;
+		background: transparent;
+		padding-left: 175px;
+
 
 		input{
-			height: 30px;
-
+			height: 33px;
 		}
 		#genre{
-			height: 30px;
+			height: 33px;
+		}
+		#movie_title{
+			height:33px;
 		}
 	}
 }
@@ -21,18 +32,13 @@
 .down{
 	margin-top: 80px;
 }
-.well-bg{
-	background: url(/assets/cereal.jpg);
-}
+
 
 .log-form{
 	margin: 0 auto; 
   width:270px
 }
-.no-bg-picture{
-	background: white;
-	height:1000px;
-}
+
 .plot{
 	padding-top: 10px;
 }
@@ -41,7 +47,7 @@
 //search result
 
 .search_result{
-	padding-left:40px;
+	padding-left:20px;
 }
 
 .movie{
@@ -89,16 +95,29 @@
 
 //show page for movies
 
+
+
+
 .movie-page{
-	margin:50px;
+	margin:70px 30px;
 	.movie_poster{
 		width: 150px;
 	}
+		
 }
 .comment{
 	padding-left: 10px;
 	padding-right: 10px;
 	hr{
 	border:0.2px solid #DFF0D8;
+	}
+}
+.about{
+	margin: 80px 40px;
+}
+.text-color{
+	color:#778592;
+	h4{
+		color:#574747;
 	}
 }

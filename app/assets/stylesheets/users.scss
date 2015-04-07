@@ -4,14 +4,6 @@
 
 
 
-body{
-	margin:0;
-	background: url(/assets/cereal.jpg);
-	background-size: 1440px 800px;
-  	background-repeat:repeat;
-  	display: compact;
-}
-
 .feed{
     .sub-text{
     	color:#aaa;
@@ -27,7 +19,7 @@ body{
 .user_page{
 	height:1135px;
 	opacity:0.9;
-	margin-top:15px;
+	margin-top:59px;
 	.profile{
 		background:white;
 		border-radius: 5px;
@@ -43,7 +35,6 @@ body{
 			}
 			.button-follow{
 				margin-top:50px;
-
 			}
 	}
 	.lists{
@@ -83,11 +74,11 @@ body{
 
 //index for all users
 .panel-index{
-	background: #C1E4B9;
 	.index{
 		width: 700px;
 		height:1150px;
-		margin:20px auto;
+		margin:40px auto;
+	
 	}
 	.users{
 		padding-left:120px;
@@ -95,6 +86,8 @@ body{
 	img{
 		width:60px;
 	}
+
+	
 }
 //status_lists
 
@@ -132,3 +125,15 @@ body{
 	}
 
 
+.log-edit{
+	background:#B7B7AC;
+	border-radius: 2%;
+	padding-bottom: 20px;
+	margin-top: 80px;
+	margin-bottom: 80px;
+	;
+}
+
+.mar{
+	margin-top: 120px;	
+}

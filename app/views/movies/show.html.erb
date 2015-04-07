@@ -1,6 +1,6 @@
-<div class="container-fluid no-bg-picture">
-  <div class="panel panel-success movie-page">
-    <div class="panel-heading movie-title">
+<div class="container-fluid ">
+  <div class="panel panel-default movie-page">
+    <div class="panel-heading">
       <strong><%= @movie.title%></strong>
     </div>
     <div class="panel-body">
@@ -33,8 +33,8 @@
                 </span>
               </p>
               <p>
-                <strong>Countries:</strong>
-                <%=@movie.countries %>
+                <strong>Vizualizari:</strong>
+                <%=@watched.count %>
               </p>
               <strong>IMDB rating:</strong>
               <%= @movie.imdb_rating%>/10
@@ -48,7 +48,7 @@
                   <%= hidden_field_tag :movie_id, @movie.id %>
                   <%= hidden_field_tag :status, false  %>
                   <%= hidden_field_tag :user_id, current_user.id  %>
-                  <%= submit_tag "Musai de vazut", :class=>"btn btn-success" %>
+                  <%= submit_tag "Musai de vazut", :class=>"btn btn-primary" %>
                   <% end %>
                 </div>
                  <div class="col-md-3 col-md-offset-1">
@@ -56,7 +56,7 @@
                   <%= hidden_field_tag :movie_id, @movie.id  %>
                   <%= hidden_field_tag :status , true  %>
                   <%= hidden_field_tag :user_id, current_user.id  %>
-                  <%= submit_tag "Vazut", :class=>"btn btn-success"  %>
+                  <%= submit_tag "Vazut", :class=>"btn btn-primary"  %>
                   <% end %>
                 </div>    
               <% end %>
@@ -70,9 +70,11 @@
       </div>
       <div class="row comment">
         <div class="col-md-12">
-          <hr>
-          <%= button_to "Show comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true, class: "showbutton" %>
-          <div id="comments"></div>
+
+          <%= button_to "Show Comments (#{@movie.comments.count})", {controller: "comments", action: "show",id: @movie }, method: "get", remote: true, class: "showbutton" %>
+          
+          <div id="comments">
+          </div>
           <div id="add_comment"></div>
           <%= button_to "Add comment", {controller: "comments", action: "new",id: @movie }, method: "get", remote: true  %>
         </div>

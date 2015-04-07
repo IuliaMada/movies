@@ -3,7 +3,11 @@
   	<li>
  			<div class="row">
  				<div class="col-md-7 ">
-			 		<%=link_to image_tag(status_list.poster), movie_path(status_list) %> 
+ 					<% if status_list.poster.blank? %>    
+          	<%= link_to image_tag("default_size4.jpg"), movie_path(status_list)%>
+        	<% else %>
+				    <%= link_to image_tag(status_list.poster), movie_path(status_list) %>
+					<% end %>
 		  		  &nbsp;<% movies = status_list.title.split  %>
 									<% movies.pop  %>
 									<b><%= movies.join(' ')%></b>

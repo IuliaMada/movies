@@ -26,6 +26,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @watched = UserList.where(movie_id: params[:id], status: true )
   end
 
   def destroy
