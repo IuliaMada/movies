@@ -3,12 +3,12 @@ class MoviesController < ApplicationController
 
   def about
   end
+  
   def index
   	if params[:movie_title].blank? && params[:genre]
       if params[:genre] == ""
         flash[:notice] = "Choose a movie by title or by genre"
-        redirect_to movies_path
-        
+        redirect_to movies_path   
       else
         movies = search_category(params[:genre])
         @movies = movies.paginate(:page => params[:page],:per_page => 15) 
@@ -44,8 +44,7 @@ class MoviesController < ApplicationController
       @movie.liked_by current_user
       redirect_to @movie
     else
-      redirect_to user_session_path
-      flash[:notice] = "Log in if you want to vote"
+      redirect_to user_session_path  
     end
   end
 
@@ -56,7 +55,6 @@ class MoviesController < ApplicationController
       redirect_to @movie
     else
       redirect_to user_session_path
-      flash[:notice] = "Log in if you want to vote"
     end
   end
 

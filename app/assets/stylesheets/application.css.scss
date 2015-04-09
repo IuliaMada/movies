@@ -18,6 +18,7 @@
  @import "movies.scss";
  @import "user_lists.scss";
  @import "users.scss";
+ @import "relationships.scss";
 
 
 .navbar-header{
@@ -30,4 +31,10 @@
 	}
 }
 
-
+.notice{
+	margin:0px;
+	padding:0px;
+}
+.first{
+	padding-left:20px;
+}

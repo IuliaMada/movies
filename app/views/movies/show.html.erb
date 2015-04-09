@@ -6,14 +6,13 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-2">
-          <p id="notice"><%= notice %></p>
             <% if @movie.poster.blank? %>
               <img src="/assets/default_size4.jpg", class="movie_poster"></img>
             <% else %>
               <%=image_tag (@movie.poster), :class => "movie_poster"%>
             <% end %>
           <p>
-            <i class="glyphicon glyphicon-thumbs-up"></i>
+            <i class="glyphicon glyphicon-thumbs-up "></i>
             <%= @movie.get_likes.size %>
             <%= link_to "Like", like_movie_path(@movie), method: :put %>
             <i class="glyphicon glyphicon-thumbs-down"></i>
