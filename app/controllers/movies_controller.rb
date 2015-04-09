@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
   	 	@movies_result = JSON.parse(response)
       add_genres_to_db(@movies_result)
       add_movie_to_db(@movies_result)
-      movies = Movie.search_db(params[:movie_title])
+      movies = Movie.search_db(params[:movie_title].capitalize!)
       @movies = movies.paginate(:page => params[:page],:per_page => 15) 
     end
   end 
