@@ -1,8 +1,11 @@
 
-<div class="container well " >
-	<div class="jumbotron">
+<div class="container-fluid well " >
+	<div class="row">
+	<div class="search">
 		<%= render 'search' %>
 	</div>
+	</div>
+	<div class="row after_picture">
 	<% if params[:movie_title] %>
 		<h5>Search result:</h5>
 		<%= will_paginate @movies%>
@@ -11,5 +14,6 @@
 		</div>
 		<%= will_paginate @movies%>	
 	<% end %>
+	</div>
 </div>
 
