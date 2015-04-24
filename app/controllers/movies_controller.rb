@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   def index
   	if params[:movie_title].blank? && params[:genre]
       if params[:genre] == ""
-        flash[:notice] = "Choose a movie by title or by genre"
+        flash[:notice] = "Choose a movie by title or genre"
         redirect_to movies_path   
       else
         movies = search_category(params[:genre])
@@ -15,13 +15,20 @@ class MoviesController < ApplicationController
       end
 
     elsif params[:movie_title]
+      movies = Movie.search_db(params[:movie_title].capitalize!)
+      @movies = movies.paginate(:page => params[:page],:per_page => 15)
+      if movies.empty?
+        flash[:notice] = "Searching on IMDB"
       response = HTTParty.get("http://myapifilms.com/imdb?title=#{params[:movie_title].gsub(' ', '%20')}&limit=10")
   	 	@movies_result = JSON.parse(response)
       add_genres_to_db(@movies_result)
       add_movie_to_db(@movies_result)
       movies = Movie.search_db(params[:movie_title].capitalize!)
-      @movies = movies.paginate(:page => params[:page],:per_page => 15) 
+      @movies = movies.paginate(:page => params[:page],:per_page => 15)
+      end 
     end
+    @new_movies = Movie.search_db(Time.now.year).paginate(:page => params[:page],:per_page => 15)
+    
   end 
 
   def show

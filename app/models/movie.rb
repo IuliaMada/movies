@@ -7,7 +7,14 @@ class Movie < ActiveRecord::Base
 
 	mount_uploader :image, ImageUploader
 
-	def self.search_db(query)
-    where("title like ?","%#{query}%")
+	# def self.search_db(query)
+ #    where("title like ?","%#{query}%")
+ #  end
+
+  def self.search_db(query)
+    words = query.to_s.strip.split
+    words.map! { |word| "title LIKE '%#{word}%'" }
+    sql = words.join(" AND ")
+    self.where(sql)
   end
 end

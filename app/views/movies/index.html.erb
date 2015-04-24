@@ -1,25 +1,39 @@
 
 <div class="container-fluid well " >
 	<div class="row">
-	<div class="search">
-		<%= render 'search' %>
-	</div>
+		<div class="search">
+			<%= render 'search' %>
+			<span class="notice"><%= notice %></span>
+		</div>
 	</div>
 	<div class="row after_picture">
 		<% if params[:movie_title] %>
-		<div class="row" >
-			<div class="col-md-4">
-				<%= will_paginate @movies%>
+			<div class="row" >
+				<div class="col-md-4">
+					<%= will_paginate @movies%>
+				</div>
+				<div class="col-md-8">
+					<h5>Search result:</h5>
+				</div>
 			</div>
-			<div class="col-md-8">
-				<h5>Search result:</h5>
-			</div>
-		</div>
 			<div class="row search_result">
 				<%= render  @movies %>
 			</div>
-			<%= will_paginate @movies%>	
-	<% end %>
-	</div>
+			<%= will_paginate @movies%>
+		<% else %>
+			<div class="row" >
+				<div class="col-md-4">
+					<%= will_paginate @new_movies%>
+				</div>
+				<div class="col-md-8">
+					<h5>LATEST MOVIES</h5>
+				</div>
+			</div>
+			<div class="row search_result">
+				<%= render partial: 'movie' , collection: @new_movies%>
+			</div>
+			<%= will_paginate @new_movies%>						
+		<% end %>
+	</div>	
 </div>
 
