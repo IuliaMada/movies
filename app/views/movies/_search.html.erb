@@ -1,7 +1,7 @@
 
 <%= form_tag({controller: 'movies', action: "index",}, method: 'get',:class => 'search-form') do %>
 	
-	<%= text_field_tag :movie_title, params[:movie_title],{ placeholder: " Search by title / year",size: 60} %>  &emsp; <b>or</b>  &emsp;
+	<%= text_field_tag :movie_title, params[:movie_title],{ placeholder: " Search by title",size: 60} %>  &emsp; <b>or</b>  &emsp;
 	<%= select_tag :genre, options_for_select(all_category), prompt: "Gen" %>
   <%= submit_tag("Search") %>
 <% end %>

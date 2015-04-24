@@ -1,29 +1,14 @@
-
+ 
 <div class="container-fluid panel-index">
 	<div class="panel panel-default index">
-    <div class="panel-heading"> <b>Tata lumea</b>
+    <div class="panel-heading"> <b>Everybody</b>
     </div>
     <div class="panel-body users">
-			<%= will_paginate @users%>
-			<% @users.each do |user| %>
-				<%= link_to image_tag(user.image), user_path(user), :class=> "img-responsive" %>
-					<%= user.first_name %>
-					<%= user.last_name %>
-					<div class="stats">
-						<a href="<%= following_user_path(user) %>">
-							<strong id="following" class="stat">
-					  		<%= user.following.count %>
-							</strong>
-							following
-				  		</a>
-				  		<a href="<%= followers_user_path(user) %>">
-							<strong id="followers" class="stat">
-					  		<%= user.followers.count %>
-							</strong>
-							followers
-				  	</a>
-					</div>
-			<% end %>
+    <%= will_paginate @users%>
+    <div class='row'>
+			<%= render partial: "users", collection: @users %>
+		</div>
+
 		<%= will_paginate @users%>
 		</div>
 	</div>

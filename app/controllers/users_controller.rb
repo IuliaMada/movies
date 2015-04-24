@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :user_signed_in?, only: [:index, :following, :followers]
   require 'will_paginate/array'                                  
   def index
-		@users = User.paginate(:page => params[:page],:per_page => 9)
+		@users = User.paginate(:page => params[:page],:per_page => 24)
 	end
 
   def show
