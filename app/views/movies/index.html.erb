@@ -6,13 +6,19 @@
 	</div>
 	</div>
 	<div class="row after_picture">
-	<% if params[:movie_title] %>
-		<h5>Search result:</h5>
-		<%= will_paginate @movies%>
-		<div class="row search_result">
-			<%= render  @movies %>
+		<% if params[:movie_title] %>
+		<div class="row" >
+			<div class="col-md-4">
+				<%= will_paginate @movies%>
+			</div>
+			<div class="col-md-8">
+				<h5>Search result:</h5>
+			</div>
 		</div>
-		<%= will_paginate @movies%>	
+			<div class="row search_result">
+				<%= render  @movies %>
+			</div>
+			<%= will_paginate @movies%>	
 	<% end %>
 	</div>
 </div>
